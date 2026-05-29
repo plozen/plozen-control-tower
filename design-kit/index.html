@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>플디킷</title>
+    <meta
+      name="description"
+      content="프로젝트에 심어 초기 디자인, 퍼블리싱, 포트폴리오 산출물을 뽑는 Plostack Design Kit 모듈"
+    />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/styles/index.css" />
+  </head>
+  <body>
+    <main class="kit-console">
+      <header class="console-header">
+        <p class="console-label">Plostack Design Kit</p>
+        <div class="console-titlebar">
+          <h1>플디킷 작업 콘솔</h1>
+          <code>localhost:8090</code>
+        </div>
+        <p class="console-summary">
+          Project, Surface, Source, Target, 주요 산출물 링크와 상태만 표시합니다.
+        </p>
+      </header>
+
+      <section class="identity-strip" aria-label="현재 작업 기준">
+        <dl>
+          <div class="identity-field">
+            <dt>Project</dt>
+            <dd>PLOZEN Control Tower</dd>
+          </div>
+          <div class="identity-field">
+            <dt>Surface</dt>
+            <dd>web</dd>
+          </div>
+          <div class="identity-field">
+            <dt>Source</dt>
+            <dd><a href="/DESIGN.md">DESIGN.md</a></dd>
+          </div>
+          <div class="identity-field">
+            <dt>Target</dt>
+            <dd>Public control dashboard</dd>
+          </div>
+        </dl>
+      </section>
+
+      <nav class="artifact-ledger" aria-labelledby="artifact-title">
+        <div class="ledger-heading">
+          <h2 id="artifact-title">산출물 위치</h2>
+          <p>source -> visual proof -> raw screen -> external export -> evidence</p>
+        </div>
+
+        <ul class="ledger-list" aria-label="플디킷 산출물 경로">
+          <li>
+            <a class="ledger-row" href="/DESIGN.md">
+              <span class="ledger-code">SRC</span>
+              <strong class="ledger-path">DESIGN.md</strong>
+              <span class="ledger-purpose">디자인 원본 규칙</span>
+              <span class="ledger-state">source</span>
+            </a>
+          </li>
+          <li>
+            <a class="ledger-row" href="/sitemap.xml">
+              <span class="ledger-code">MAP</span>
+              <strong class="ledger-path">sitemap.xml</strong>
+              <span class="ledger-purpose">디자인 키트 사이트맵</span>
+              <span class="ledger-state">route</span>
+            </a>
+          </li>
+          <li>
+            <a class="ledger-row" href="/styleguide/">
+              <span class="ledger-code">SG</span>
+              <strong class="ledger-path">styleguide/</strong>
+              <span class="ledger-purpose">토큰, 컴포넌트, 상태 시각화</span>
+              <span class="ledger-state">ready</span>
+            </a>
+          </li>
+          <li>
+            <a class="ledger-row" href="/pub/">
+              <span class="ledger-code">PUB</span>
+              <strong class="ledger-path">pub/</strong>
+              <span class="ledger-purpose">raw 앱 화면 publishing 원본</span>
+              <span class="ledger-state">ready</span>
+            </a>
+          </li>
+          <li>
+            <a class="ledger-row" href="/portfolio/kmong/">
+              <span class="ledger-code">PORT</span>
+              <strong class="ledger-path">portfolio/kmong/</strong>
+              <span class="ledger-purpose">크몽 제출 이미지 원본</span>
+              <span class="ledger-state">target</span>
+            </a>
+          </li>
+          <li>
+            <a class="ledger-row" href="/screenshots/">
+              <span class="ledger-code">CAP</span>
+              <strong class="ledger-path">screenshots/</strong>
+              <span class="ledger-purpose">검증 캡처와 최종 PNG</span>
+              <span class="ledger-state">evidence</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="operation-notes" aria-label="운영 상태">
+        <p><span>Status</span> ready</p>
+        <p><span>Scope</span> source / styleguide / pub / portfolio / screenshots</p>
+      </section>
+    </main>
+  </body>
+</html>

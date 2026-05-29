@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PLOZEN Control Tower 크몽 웹 페이지 모음</title>
+    <meta
+      name="description"
+      content="PLOZEN Control Tower 샘플 관리자 웹 주요 화면 4개를 크몽 상세 이미지 캔버스에 붙이는 페이지 모음 원본"
+    />
+    <link rel="icon" href="data:," />
+    <script>
+      const captureTarget = new URLSearchParams(window.location.search).get("capture");
+      if (captureTarget) {
+        document.documentElement.dataset.capture = captureTarget;
+      }
+      if (new URLSearchParams(window.location.search).get("embed")) {
+        document.documentElement.dataset.preview = "1";
+      }
+    </script>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="asset-page">
+    <div class="asset-actions asset-actions--web-pages">
+      <button class="download-button download-button--primary" type="button" data-download-all>
+        4개 PNG 다운로드
+      </button>
+      <a
+        class="download-button"
+        href="../../../screenshots/portfolio/kmong/web/plostack-web-page-01-dashboard.png?v=20260518-web-kit"
+        download="plostack-web-page-01-dashboard.png"
+        data-portfolio-download
+      >
+        01 대시보드
+      </a>
+      <a
+        class="download-button"
+        href="../../../screenshots/portfolio/kmong/web/plostack-web-page-02-members.png?v=20260518-web-kit"
+        download="plostack-web-page-02-members.png"
+        data-portfolio-download
+      >
+        02 회원 관리
+      </a>
+      <a
+        class="download-button"
+        href="../../../screenshots/portfolio/kmong/web/plostack-web-page-03-content-qr.png?v=20260518-web-kit"
+        download="plostack-web-page-03-content-qr.png"
+        data-portfolio-download
+      >
+        03 QR 관리
+      </a>
+      <a
+        class="download-button"
+        href="../../../screenshots/portfolio/kmong/web/plostack-web-page-04-notice-push.png?v=20260518-web-kit"
+        download="plostack-web-page-04-notice-push.png"
+        data-portfolio-download
+      >
+        04 푸시 발송
+      </a>
+      <a
+        class="download-button"
+        href="../../../screenshots/portfolio/kmong/web/plostack-web-page-full.png?v=20260518-web-kit"
+        download="plostack-web-page-full.png"
+      >
+        전체 모음
+      </a>
+      <a class="download-button" href="./pages.html?capture=full">
+        페이지 모음 원본
+      </a>
+      <a class="download-button" href="./">웹 패키지로 돌아가기</a>
+    </div>
+
+    <main class="asset-stage asset-stage--web-pages" aria-label="웹 페이지 모음 이미지 미리보기">
+      <article id="asset-web-full" class="canvas canvas--web-page" aria-label="PLOZEN Control Tower 웹 페이지 모음 이미지">
+        <div class="web-page-stack">
+          <section id="asset-web-dashboard" class="web-page-snapshot" aria-label="대시보드 전체 화면">
+            <div class="web-page-snapshot-frame">
+              <iframe
+                src="../../../pub/web/index.html"
+                title="PLOZEN Control Tower 대시보드 원본"
+                loading="eager"
+                scrolling="no"
+              ></iframe>
+            </div>
+          </section>
+
+          <section id="asset-web-members" class="web-page-snapshot" aria-label="회원 관리 전체 화면">
+            <div class="web-page-snapshot-frame">
+              <iframe
+                src="../../../pub/web/index.html"
+                title="PLOZEN Control Tower 회원 관리 원본"
+                loading="eager"
+                scrolling="no"
+              ></iframe>
+            </div>
+          </section>
+
+          <section id="asset-web-content-qr" class="web-page-snapshot" aria-label="QR 관리 전체 화면">
+            <div class="web-page-snapshot-frame">
+              <iframe
+                src="../../../pub/web/index.html"
+                title="PLOZEN Control Tower QR 관리 원본"
+                loading="eager"
+                scrolling="no"
+              ></iframe>
+            </div>
+          </section>
+
+          <section id="asset-web-notice-push" class="web-page-snapshot" aria-label="푸시 발송 전체 화면">
+            <div class="web-page-snapshot-frame">
+              <iframe
+                src="../../../pub/web/index.html"
+                title="PLOZEN Control Tower 푸시 발송 원본"
+                loading="eager"
+                scrolling="no"
+              ></iframe>
+            </div>
+          </section>
+
+          <footer class="web-page-stack-footer">
+            <strong>PLOSTACK WEB OPS</strong>
+            <span>Sample operations console · 2026</span>
+          </footer>
+        </div>
+      </article>
+    </main>
+
+    <script>
+      const downloadAll = document.querySelector("[data-download-all]");
+      const portfolioDownloads = Array.from(document.querySelectorAll("[data-portfolio-download]"));
+
+      downloadAll?.addEventListener("click", () => {
+        portfolioDownloads.forEach((link, index) => {
+          window.setTimeout(() => {
+            const downloadLink = document.createElement("a");
+            downloadLink.href = link.href;
+            downloadLink.download = link.download;
+            document.body.append(downloadLink);
+            downloadLink.click();
+            downloadLink.remove();
+          }, index * 220);
+        });
+      });
+    </script>
+  </body>
+</html>

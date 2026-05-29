@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Styleguide | Plostack Design Kit</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-head">
+        <p class="eyebrow">STYLEGUIDE</p>
+        <h1>플디킷 디자인 검수표</h1>
+        <p>`DESIGN.md` 기준을 토큰, 컴포넌트, surface 패턴, 상태 커버리지로 나눠 확인합니다.</p>
+      </header>
+
+      <nav class="route-list" aria-label="Styleguide sections">
+        <a class="route-row" href="./sitemap.html">
+          <span>00</span>
+          <strong>Sitemap</strong>
+          <em>디자인 원본, styleguide, pub, portfolio, screenshots 연결 구조</em>
+          <b>IA source</b>
+        </a>
+        <a class="route-row" href="./tokens.html">
+          <span>01</span>
+          <strong>Tokens</strong>
+          <em>색상, 타이포, 간격, 반경, 검수 폭</em>
+          <b>DESIGN.md sync</b>
+        </a>
+        <a class="route-row" href="./components.html">
+          <span>02</span>
+          <strong>Components</strong>
+          <em>버튼, 입력, 배지, 리스트, 내비게이션, 진행 표면</em>
+          <b>state matrix</b>
+        </a>
+        <a class="route-row" href="./patterns.html">
+          <span>03</span>
+          <strong>Patterns</strong>
+          <em>app, app-tablet, web, admin, portfolio 화면 구조</em>
+          <b>surface map</b>
+        </a>
+        <a class="route-row" href="./states.html">
+          <span>04</span>
+          <strong>States</strong>
+          <em>loading, empty, error, disabled, offline, validation, unsaved</em>
+          <b>coverage</b>
+        </a>
+      </nav>
+
+      <section class="section panel" aria-labelledby="gate-title">
+        <div class="section-head">
+          <p class="eyebrow">GATE</p>
+          <h2 id="gate-title">최소 검수 기준</h2>
+        </div>
+        <dl class="metric-grid">
+          <div><dt>Mobile</dt><dd>344px blocker, 390px default</dd></div>
+          <div><dt>Tablet</dt><dd>768px portrait, 1024px landscape</dd></div>
+          <div><dt>Desktop</dt><dd>1440px default, 1728px wide</dd></div>
+          <div><dt>Overlap</dt><dd>header, list, sticky action, bottom tab 0px</dd></div>
+        </dl>
+      </section>
+    </main>
+  </body>
+</html>

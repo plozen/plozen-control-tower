@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plostack Design Kit 크몽 포트폴리오 허브</title>
+    <meta
+      name="description"
+      content="Plostack Design Kit의 모바일 앱과 운영형 웹 관리자 UI 크몽 포트폴리오 패키지를 나눠 검수하는 허브"
+    />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="portfolio-package-page kmong-hub-page">
+    <main class="portfolio-shell" aria-labelledby="portfolio-title">
+      <header class="portfolio-hero">
+        <p class="eyebrow">KMONG PORTFOLIO HUB</p>
+        <h1 id="portfolio-title">Plostack<br />크몽 포트폴리오</h1>
+        <p>모바일 앱 legacy snapshot과 운영형 웹 관리자 UI 산출물을 분리해 검수합니다.</p>
+        <nav class="portfolio-jump" aria-label="크몽 포트폴리오 패키지 이동">
+          <a href="./mobile/">모바일 앱</a>
+          <a href="./web/">반응형 웹</a>
+        </nav>
+      </header>
+
+      <section class="kmong-package-grid" aria-label="크몽 포트폴리오 패키지">
+        <article class="kmong-package-card">
+          <div class="kmong-package-copy">
+            <span>01 · MOBILE APP</span>
+            <h2>현장 탐험 모바일 앱</h2>
+            <p>QR 미션, 지도, 공지, 진행 상태를 모바일 앱 흐름으로 보여주는 기존 포트폴리오 패키지입니다.</p>
+            <ul>
+              <li>대표 썸네일</li>
+              <li>상세 이미지</li>
+              <li>화면별 상세 페이지 4장</li>
+            </ul>
+            <a href="./mobile/">모바일 패키지 열기</a>
+          </div>
+          <div class="kmong-package-preview" data-preview-width="1200" data-preview-height="1200">
+            <iframe
+              src="./mobile/main-thumbnail.html?embed=1"
+              title="모바일 앱 대표 썸네일 미리보기"
+              loading="eager"
+            ></iframe>
+          </div>
+        </article>
+
+        <article class="kmong-package-card kmong-package-card--web">
+          <div class="kmong-package-copy">
+            <span>02 · WEB ADMIN</span>
+            <h2>운영형 웹 관리자 UI</h2>
+            <p>PC, 태블릿, 모바일 브라우저에서 이어지는 중립 샘플 웹 포트폴리오 패키지입니다.</p>
+            <ul>
+              <li>웹 대표 썸네일</li>
+              <li>웹 상세 이미지</li>
+              <li>서브 상세 3기기 합성</li>
+              <li>페이지별 상세 이미지</li>
+            </ul>
+            <a href="./web/">웹 패키지 열기</a>
+          </div>
+          <div class="kmong-package-preview" data-preview-width="1200" data-preview-height="1200">
+            <iframe
+              src="./web/main-thumbnail.html?embed=1"
+              title="웹 대표 썸네일 미리보기"
+              loading="eager"
+            ></iframe>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      const previewFrames = Array.from(document.querySelectorAll("[data-preview-width]"));
+
+      const resizePackagePreviews = () => {
+        previewFrames.forEach((frame) => {
+          const sourceWidth = Number(frame.dataset.previewWidth);
+          const sourceHeight = Number(frame.dataset.previewHeight);
+          if (!sourceWidth || !sourceHeight) return;
+
+          const scale = frame.getBoundingClientRect().width / sourceWidth;
+          frame.style.height = `${Math.ceil(sourceHeight * scale)}px`;
+          frame.style.setProperty("--preview-scale", String(scale));
+        });
+      };
+
+      if ("ResizeObserver" in window) {
+        const previewObserver = new ResizeObserver(resizePackagePreviews);
+        previewFrames.forEach((frame) => previewObserver.observe(frame));
+      }
+
+      window.addEventListener("load", resizePackagePreviews);
+      window.addEventListener("resize", resizePackagePreviews);
+      resizePackagePreviews();
+    </script>
+  </body>
+</html>

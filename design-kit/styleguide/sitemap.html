@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitemap | Plostack Design Kit</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-head">
+        <p class="eyebrow">SITEMAP</p>
+        <h1>디자인시스템<br />사이트맵</h1>
+        <p>플디킷에서 디자인 원본, 검수표, raw 화면, 포트폴리오 export, 증거 캡처가 어떤 순서로 연결되는지 정의합니다.</p>
+        <nav class="top-nav" aria-label="Styleguide navigation">
+          <a href="./index.html">Index</a>
+          <a href="./tokens.html">Tokens</a>
+          <a href="./components.html">Components</a>
+          <a href="./patterns.html">Patterns</a>
+          <a href="./states.html">States</a>
+          <a href="../pub/">Pub</a>
+          <a href="../portfolio/kmong/">Portfolio</a>
+        </nav>
+      </header>
+
+      <section class="section panel" aria-labelledby="flow-title">
+        <div class="section-head">
+          <p class="eyebrow">FLOW</p>
+          <h2 id="flow-title">작업 순서</h2>
+        </div>
+        <ol class="sitemap-flow" aria-label="디자인시스템 작업 순서">
+          <li><strong>DESIGN.md</strong><span>프로젝트 디자인 원본과 검수 기준을 먼저 고정합니다.</span></li>
+          <li><strong>Sitemap</strong><span>산출물 구조와 필요한 route를 정리합니다.</span></li>
+          <li><strong>Tokens</strong><span>색상, 타입, 간격, viewport 기준을 시각화합니다.</span></li>
+          <li><strong>Components</strong><span>반복 UI와 상태 매트릭스를 확인합니다.</span></li>
+          <li><strong>Patterns</strong><span>app, web, admin, portfolio surface 구조를 나눕니다.</span></li>
+          <li><strong>States</strong><span>loading, empty, error, offline 같은 누락 상태를 점검합니다.</span></li>
+          <li><strong>Pub</strong><span>raw 화면 artboard를 만듭니다.</span></li>
+          <li><strong>Portfolio</strong><span>판매/제출용 composite export 원본을 만듭니다.</span></li>
+          <li><strong>Screenshots</strong><span>검증 캡처와 최종 PNG export를 기록합니다.</span></li>
+        </ol>
+      </section>
+
+      <section class="section" aria-labelledby="routes-title">
+        <div class="section-head">
+          <p class="eyebrow">ROUTES</p>
+          <h2 id="routes-title">필수 route 맵</h2>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Layer</th><th>Route / file</th><th>Role</th><th>Done 기준</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Source</td><td><a href="../DESIGN.md">/DESIGN.md</a></td><td>디자인 원본 규칙</td><td>surface, token, gate 기준이 최신</td></tr>
+              <tr><td>IA</td><td><a href="./sitemap.html">/styleguide/sitemap.html</a></td><td>디자인시스템 사이트맵</td><td>route와 산출물 책임이 명확함</td></tr>
+              <tr><td>Tokens</td><td><a href="./tokens.html">/styleguide/tokens.html</a></td><td>기초 시각 토큰</td><td>색상, 타입, 간격, viewport 반영</td></tr>
+              <tr><td>Components</td><td><a href="./components.html">/styleguide/components.html</a></td><td>반복 UI와 상태 매트릭스</td><td>default, focus, disabled, error 등 표시</td></tr>
+              <tr><td>Patterns</td><td><a href="./patterns.html">/styleguide/patterns.html</a></td><td>surface별 화면 구조</td><td>mobile, tablet, desktop 전환 기준 있음</td></tr>
+              <tr><td>States</td><td><a href="./states.html">/styleguide/states.html</a></td><td>상태 커버리지</td><td>empty, loading, error, offline 누락 없음</td></tr>
+              <tr><td>Raw</td><td><a href="../pub/">/pub/</a></td><td>app/web raw hub</td><td>앱과 웹 화면 원본 route를 분기</td></tr>
+              <tr><td>Raw</td><td><a href="../pub/app/">/pub/app/</a></td><td>mobile app raw artboard</td><td>기존 screen iframe query와 호환</td></tr>
+              <tr><td>Raw</td><td><a href="../pub/web/">/pub/web/</a></td><td>responsive web raw scaffold</td><td>웹 포트폴리오 iframe source</td></tr>
+              <tr><td>Portfolio</td><td><a href="../portfolio/kmong/">/portfolio/kmong/</a></td><td>크몽 포트폴리오 허브</td><td>mobile/web 패키지 분기</td></tr>
+              <tr><td>Portfolio</td><td><a href="../portfolio/kmong/mobile/">/portfolio/kmong/mobile/</a></td><td>모바일 앱 composite</td><td>대표, 상세, 화면별 export 원본</td></tr>
+              <tr><td>Portfolio</td><td><a href="../portfolio/kmong/web/">/portfolio/kmong/web/</a></td><td>웹사이트 composite</td><td>대표, 서브 상세, 페이지별 export 원본</td></tr>
+              <tr><td>Evidence</td><td><a href="../screenshots/">/screenshots/</a></td><td>검증 캡처와 최종 PNG</td><td>origin, pub, styleguide, portfolio 분리</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="surface-title">
+        <div class="section-head">
+          <p class="eyebrow">SURFACE</p>
+          <h2 id="surface-title">surface별 sitemap 기준</h2>
+        </div>
+        <div class="sitemap-surface-grid">
+          <article>
+            <strong>App</strong>
+            <p>root tab, task/detail, permission, offline, safe area, mobile 344/390 검수.</p>
+          </article>
+          <article>
+            <strong>Web</strong>
+            <p>desktop 1440, tablet 1024, mobile 390 흐름과 PC/tablet/mobile 포트폴리오 썸네일.</p>
+          </article>
+          <article>
+            <strong>Admin</strong>
+            <p>sidebar, topbar, filter, table, side sheet, modal, pagination 상태.</p>
+          </article>
+          <article>
+            <strong>Portfolio</strong>
+            <p>fixed canvas, capture route, export 파일명, 작업 UI 숨김, 최종 PNG 위치.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

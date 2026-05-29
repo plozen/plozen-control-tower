@@ -1,0 +1,14 @@
+{
+  "name": "plostack-design-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "plodikit": "./bin/plodikit.js"
+  },
+  "scripts": {
+    "design": "npx --yes http-server . -p 8090 -c-1",
+    "export:web": "node tools/capture-kmong-web.mjs",
+    "serve": "npm run design"
+  }
+}

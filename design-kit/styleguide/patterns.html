@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patterns | Plostack Design Kit</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-head">
+        <p class="eyebrow">PATTERNS</p>
+        <h1>Surface 화면 구조</h1>
+        <p>앱과 웹 프로젝트 모두 대응하도록 mobile, tablet, desktop 구조 전환 기준을 분리합니다.</p>
+        <nav class="top-nav" aria-label="Styleguide navigation">
+          <a href="./index.html">Index</a>
+          <a href="./sitemap.html">Sitemap</a>
+          <a href="./tokens.html">Tokens</a>
+          <a href="./components.html">Components</a>
+          <a href="./states.html">States</a>
+        </nav>
+      </header>
+
+      <section class="section" aria-labelledby="surface-title">
+        <div class="section-head">
+          <p class="eyebrow">SURFACE</p>
+          <h2 id="surface-title">패턴 매트릭스</h2>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Surface</th><th>Navigation</th><th>Main structure</th><th>Required check</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>app</td><td>bottom tab, task back</td><td>header, content, sticky action</td><td>tab이 content를 가리지 않음</td></tr>
+              <tr><td>app-tablet</td><td>rail 또는 split root</td><td>master-detail, 넓은 safe area</td><td>768/1024에서 pane 간격 유지</td></tr>
+              <tr><td>web</td><td>top nav 또는 section nav</td><td>responsive content bands</td><td>390/1024/1440 overflow 없음</td></tr>
+              <tr><td>web-tablet</td><td>collapsed nav, touch target</td><td>2 column에서 1 column 전환</td><td>hover/focus와 touch 동시 대응</td></tr>
+              <tr><td>admin</td><td>sidebar, filter bar</td><td>table, dense row, side sheet</td><td>table clipping과 bulk action 검수</td></tr>
+              <tr><td>portfolio</td><td>asset ledger</td><td>fixed export canvas</td><td>target platform 크기와 파일명 일치</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section panel" aria-labelledby="layout-title">
+        <div class="section-head">
+          <p class="eyebrow">DIAGRAM</p>
+          <h2 id="layout-title">구조 전환 예시</h2>
+        </div>
+        <div class="layout-rail">
+          <div class="surface-diagram mobile-diagram" aria-label="mobile root layout">
+            <span>Header</span><span>Content</span><span>Sticky CTA</span><span>Bottom tabs</span>
+          </div>
+          <div class="surface-diagram tablet-diagram" aria-label="tablet split layout">
+            <span>Rail</span><span>List pane</span><span>Detail pane</span>
+          </div>
+          <div class="surface-diagram desktop-diagram" aria-label="admin desktop layout">
+            <span>Sidebar</span><span>Toolbar</span><span>Table</span><span>Side sheet</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tokens | Plostack Design Kit</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-head">
+        <p class="eyebrow">TOKENS</p>
+        <h1>기초 토큰</h1>
+        <p>프로젝트 `DESIGN.md`와 실제 산출물의 색, 타입, 간격, viewport 기준을 맞춥니다.</p>
+        <nav class="top-nav" aria-label="Styleguide navigation">
+          <a href="./index.html">Index</a>
+          <a href="./sitemap.html">Sitemap</a>
+          <a href="./components.html">Components</a>
+          <a href="./patterns.html">Patterns</a>
+          <a href="./states.html">States</a>
+        </nav>
+      </header>
+
+      <section class="section" aria-labelledby="colors-title">
+        <div class="section-head">
+          <p class="eyebrow">COLOR</p>
+          <h2 id="colors-title">팔레트 역할</h2>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Token</th><th>Value</th><th>Role</th><th>Usage</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="swatch" style="background:#2e6a57"></span>primary.500</td><td>#2E6A57</td><td>주요 액션</td><td>CTA, 활성 탭, focus ring</td></tr>
+              <tr><td><span class="swatch" style="background:#1f4a3d"></span>primary.700</td><td>#1F4A3D</td><td>강조 텍스트</td><td>pressed state, 중요 라벨</td></tr>
+              <tr><td><span class="swatch" style="background:#c7792c"></span>secondary.500</td><td>#C7792C</td><td>보조 강조</td><td>warning emphasis, 보조 CTA</td></tr>
+              <tr><td><span class="swatch" style="background:#2c8e65"></span>success</td><td>#2C8E65</td><td>완료</td><td>완료 배지, 성공 알림</td></tr>
+              <tr><td><span class="swatch" style="background:#c84b42"></span>error</td><td>#C84B42</td><td>오류</td><td>validation, destructive state</td></tr>
+              <tr><td><span class="swatch" style="background:#1e1a17"></span>neutral.900</td><td>#1E1A17</td><td>본문 기준</td><td>제목, 주요 텍스트</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="type-title">
+        <div class="section-head">
+          <p class="eyebrow">TYPE</p>
+          <h2 id="type-title">타입 스케일</h2>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Token</th><th>Sample</th><th>Spec</th><th>Use</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>display</td><td><strong class="display-sample">현장 참여 앱</strong></td><td>32 / 38 / 700</td><td>앱 핵심 화면 제목</td></tr>
+              <tr><td>title2</td><td><strong class="title-sample">QR 미션 진행</strong></td><td>24 / 30 / 700</td><td>section title</td></tr>
+              <tr><td>body</td><td><span class="body-sample">지도와 공지, 참여 상태를 확인합니다.</span></td><td>16 / 24 / 500</td><td>본문, row 설명</td></tr>
+              <tr><td>caption</td><td><span class="caption-sample">GPS 추적 중</span></td><td>13 / 18 / 500</td><td>메타, 보조 라벨</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="spacing-title">
+        <div class="section-head">
+          <p class="eyebrow">LAYOUT</p>
+          <h2 id="spacing-title">간격과 검수 폭</h2>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Type</th><th>Token</th><th>Value</th><th>Required check</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Spacing</td><td>md</td><td>16px</td><td>mobile 최소 좌우 padding</td></tr>
+              <tr><td>Spacing</td><td>xl</td><td>32px</td><td>section 내부 기본 rhythm</td></tr>
+              <tr><td>Viewport</td><td>mobile-narrow</td><td>344px</td><td>Z Fold folded blocker</td></tr>
+              <tr><td>Viewport</td><td>tablet-portrait</td><td>768px</td><td>tablet rail 또는 split 전환 확인</td></tr>
+              <tr><td>Viewport</td><td>desktop</td><td>1440px</td><td>web/admin 기본 검수</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

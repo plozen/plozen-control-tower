@@ -1,0 +1,11 @@
+{
+  "name": "plozen-control-tower",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "design-kit:local": "npx --yes http-server . -p 8095 -c-1",
+    "design-kit:doctor": "node design-kit/bin/plodikit.js doctor --target design-kit --surface web --mode empty-raw"
+  },
+  "devDependencies": {}
+}

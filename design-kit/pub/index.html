@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Kit Raw Sources</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .pub-install-hub {
+        box-sizing: border-box;
+        min-height: 100vh;
+        padding: 64px 28px;
+        font-family: Inter, Pretendard, system-ui, sans-serif;
+        color: #20242b;
+        background: #f7f5ef;
+      }
+      .pub-install-hub .eyebrow {
+        margin: 0 0 16px;
+        color: #237962;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+      .pub-install-hub h1 {
+        margin: 0;
+        font-size: clamp(34px, 6vw, 72px);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+      .pub-install-hub p {
+        max-width: 680px;
+        margin: 22px 0;
+        color: #5d6876;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      .pub-install-hub ul {
+        display: grid;
+        gap: 12px;
+        max-width: 420px;
+        padding: 0;
+        margin: 32px 0 0;
+        list-style: none;
+      }
+      .pub-install-hub a {
+        display: block;
+        padding: 16px 18px;
+        border: 1px solid rgba(32, 36, 43, 0.12);
+        border-radius: 8px;
+        color: #20242b;
+        background: #fffdf8;
+        text-decoration: none;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="pub-install-hub" aria-labelledby="pub-title">
+      <p class="eyebrow">PLOSTACK DESIGN KIT</p>
+      <h1 id="pub-title">Raw source hub</h1>
+      <p>
+        Install mode: <strong>empty-raw</strong>. Portfolio wrappers load these raw sources through iframe.
+      </p>
+      <nav aria-label="Raw source routes">
+        <ul>
+          <li><a href="./web/">Web raw source</a></li>
+        </ul>
+      </nav>
+    </main>
+  </body>
+</html>

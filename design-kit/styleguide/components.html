@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Components | Plostack Design Kit</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-head">
+        <p class="eyebrow">COMPONENTS</p>
+        <h1>컴포넌트 상태 매트릭스</h1>
+        <p>앱, 웹, 관리자, 포트폴리오 산출물에서 반복되는 UI 단위를 상태 기준으로 점검합니다.</p>
+        <nav class="top-nav" aria-label="Styleguide navigation">
+          <a href="./index.html">Index</a>
+          <a href="./sitemap.html">Sitemap</a>
+          <a href="./tokens.html">Tokens</a>
+          <a href="./patterns.html">Patterns</a>
+          <a href="./states.html">States</a>
+        </nav>
+      </header>
+
+      <section class="section" aria-labelledby="matrix-title">
+        <div class="section-head">
+          <p class="eyebrow">MATRIX</p>
+          <h2 id="matrix-title">필수 상태</h2>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Component</th><th>Surface</th><th>Required states</th><th>검수 기준</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Button</td><td>app, web, admin</td><td>default, hover/focus, pressed, disabled, loading</td><td>44px 이상, 주요 CTA 48px 이상</td></tr>
+              <tr><td>Input</td><td>web, admin, app form</td><td>default, focus, helper, error, disabled</td><td>label과 error가 항상 같은 field에 묶임</td></tr>
+              <tr><td>Badge</td><td>all</td><td>neutral, success, warning, error, info</td><td>색만으로 의미 전달 금지</td></tr>
+              <tr><td>Navigation</td><td>app, app-tablet, web-tablet</td><td>active, inactive, overflow, collapsed</td><td>root tab에는 back button 없음</td></tr>
+              <tr><td>List row</td><td>app, admin</td><td>default, selected, empty, loading, trailing action</td><td>제목과 meta clipping 없음</td></tr>
+              <tr><td>Progress surface</td><td>app, portfolio</td><td>0%, partial, complete, blocked</td><td>현재 단계와 다음 액션 동시 표시</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section panel" aria-labelledby="specimen-title">
+        <div class="section-head">
+          <p class="eyebrow">SPECIMEN</p>
+          <h2 id="specimen-title">컴팩트 시각 샘플</h2>
+        </div>
+        <div class="component-stack">
+          <div class="specimen-row">
+            <strong>Button</strong>
+            <div class="control-line">
+              <button class="button primary">계속하기</button>
+              <button class="button secondary">보조 액션</button>
+              <button class="button ghost">취소</button>
+              <button class="button danger">삭제</button>
+              <button class="button" disabled>비활성</button>
+            </div>
+          </div>
+          <div class="specimen-row">
+            <strong>Input</strong>
+            <label class="field-inline">
+              <span>프로젝트 이름</span>
+              <input value="PLOZEN Control Tower" />
+              <em>필수 입력값입니다.</em>
+            </label>
+          </div>
+          <div class="specimen-row">
+            <strong>List row</strong>
+            <div class="list-row">
+              <span class="avatar">전</span>
+              <div>
+                <h3>완주 삼례 코스</h3>
+                <p class="body-sample">QR 7개 완료 · 지도 확인</p>
+              </div>
+              <span class="badge success">58%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

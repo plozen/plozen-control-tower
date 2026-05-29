@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>States | Plostack Design Kit</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-head">
+        <p class="eyebrow">STATES</p>
+        <h1>상태 커버리지</h1>
+        <p>산출물 검수 전에 누락되기 쉬운 상태를 화면, 컴포넌트, copy 기준으로 확인합니다.</p>
+        <nav class="top-nav" aria-label="Styleguide navigation">
+          <a href="./index.html">Index</a>
+          <a href="./sitemap.html">Sitemap</a>
+          <a href="./tokens.html">Tokens</a>
+          <a href="./components.html">Components</a>
+          <a href="./patterns.html">Patterns</a>
+          <a href="../pub/">Pub</a>
+        </nav>
+      </header>
+
+      <section class="section" aria-labelledby="state-title">
+        <div class="section-head">
+          <p class="eyebrow">COVERAGE</p>
+          <h2 id="state-title">필수 상태 목록</h2>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>State</th><th>Trigger</th><th>Required UI</th><th>Copy rule</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="badge info">Loading</span></td><td>데이터 요청 중</td><td>skeleton 또는 progress, 취소 불가 시 설명</td><td>기다리는 이유를 짧게 표시</td></tr>
+              <tr><td><span class="badge warning">Empty</span></td><td>결과 없음</td><td>빈 목록, 다음 액션</td><td>무엇을 하면 채워지는지 명시</td></tr>
+              <tr><td><span class="badge error">Error</span></td><td>요청 실패</td><td>오류 메시지, 재시도, support path</td><td>실패 원인과 다음 행동 분리</td></tr>
+              <tr><td><span class="badge neutral">Disabled</span></td><td>조건 미충족</td><td>disabled control, reason hint</td><td>왜 막혔는지 한 문장</td></tr>
+              <tr><td><span class="badge warning">Permission</span></td><td>위치/카메라 거부</td><td>권한 설명, 설정 이동, fallback</td><td>권한 목적을 구체화</td></tr>
+              <tr><td><span class="badge neutral">Offline</span></td><td>네트워크 단절</td><td>cached content, sync status</td><td>지금 가능한 기능과 제한 표시</td></tr>
+              <tr><td><span class="badge error">Validation</span></td><td>폼 입력 오류</td><td>field error, summary</td><td>수정해야 할 값 직접 언급</td></tr>
+              <tr><td><span class="badge info">Unsaved</span></td><td>저장 전 이탈</td><td>confirm dialog, save/discard</td><td>저장되지 않은 범위를 표시</td></tr>
+              <tr><td><span class="badge success">Success</span></td><td>작업 완료</td><td>결과 요약, 다음 액션</td><td>완료된 항목과 이동 경로 표시</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section panel" aria-labelledby="state-strip-title">
+        <div class="section-head">
+          <p class="eyebrow">VISUAL</p>
+          <h2 id="state-strip-title">상태 표시 예시</h2>
+        </div>
+        <div class="state-strip-list">
+          <div class="state-strip is-loading"><span></span><strong>마을 지도를 불러오는 중</strong><em>최근 저장 지점 3개를 먼저 표시합니다.</em></div>
+          <div class="state-strip is-error"><span></span><strong>QR 인증 실패</strong><em>카메라 권한을 확인한 뒤 다시 시도하세요.</em></div>
+          <div class="state-strip is-offline"><span></span><strong>오프라인 모드</strong><em>기록은 기기에 저장되고 연결 후 동기화됩니다.</em></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

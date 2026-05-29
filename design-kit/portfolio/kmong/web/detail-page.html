@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PLOZEN Control Tower 크몽 웹 서브 상세 이미지</title>
+    <meta
+      name="description"
+      content="PLOZEN Control Tower 샘플 관리자 웹 UI 크몽 상세용 1200x2100 서브 상세 이미지"
+    />
+    <link rel="icon" href="data:," />
+    <script>
+      if (new URLSearchParams(window.location.search).get("embed")) {
+        document.documentElement.dataset.preview = "1";
+      }
+    </script>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="asset-page">
+    <div class="asset-actions">
+      <a
+        class="download-button download-button--primary"
+        href="../../../screenshots/portfolio/kmong/web/plostack-web-detail-page.png?v=20260518-web-kit"
+        download="plostack-web-detail-page.png"
+      >
+        PNG 다운로드
+      </a>
+      <a class="download-button" href="./">웹 패키지로 돌아가기</a>
+    </div>
+    <main class="asset-stage" aria-label="1200x2100 웹 서브 상세 이미지 미리보기">
+      <article class="canvas canvas--web-detail" aria-labelledby="web-detail-title">
+        <div class="line-orbit line-orbit--detail-one" aria-hidden="true"></div>
+        <div class="line-orbit line-orbit--detail-two" aria-hidden="true"></div>
+
+        <header class="detail-head web-detail-head">
+          <div class="brand-lockup">
+            <span class="brand-logo brand-logo--sample" aria-hidden="true">PW</span>
+            <div>
+              <p>RESPONSIVE WEB ADMIN</p>
+              <h1 id="web-detail-title">PLOZEN Control Tower</h1>
+            </div>
+          </div>
+          <p class="detail-lead">PC, 태블릿, 모바일까지<br />운영 관리 흐름으로 연결</p>
+          <dl class="detail-meta">
+            <div>
+              <dt>TYPE</dt>
+              <dd>WEBSITE</dd>
+            </div>
+            <div>
+              <dt>SCOPE</dt>
+              <dd>PC · TABLET · MOBILE</dd>
+            </div>
+            <div>
+              <dt>SCREEN</dt>
+              <dd>ADMIN DASHBOARD</dd>
+            </div>
+          </dl>
+        </header>
+
+        <section class="web-device-showcase" aria-label="PLOZEN Control Tower 웹 반응형 3기기 화면">
+          <article class="mac-device mac-device--detail" aria-label="PC 웹 화면">
+            <div class="mac-screen">
+              <div class="browser-topbar">
+                <span class="browser-dot-group" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="browser-address">desktop / control.local</span>
+              </div>
+              <div
+                class="mac-viewport"
+                data-device-viewport
+                data-source-width="1440"
+                data-source-height="1040"
+              >
+                <iframe
+                  src="../../../pub/web/index.html"
+                  title="PLOZEN Control Tower PC 웹 화면"
+                  loading="eager"
+                  scrolling="no"
+                ></iframe>
+              </div>
+            </div>
+            <div class="mac-stand" aria-hidden="true"></div>
+            <div class="mac-base" aria-hidden="true"></div>
+          </article>
+
+          <article class="tablet-device" aria-label="태블릿 웹 화면">
+            <div class="tablet-camera" aria-hidden="true"></div>
+            <div
+              class="tablet-device-screen"
+              data-device-viewport
+              data-source-width="768"
+              data-source-height="1040"
+            >
+              <iframe
+                src="../../../pub/web/index.html"
+                title="PLOZEN Control Tower 태블릿 웹 화면"
+                loading="eager"
+                scrolling="no"
+              ></iframe>
+            </div>
+          </article>
+
+          <article class="phone-device-web" aria-label="모바일 웹 화면">
+            <div class="phone-camera" aria-hidden="true"></div>
+            <div
+              class="phone-device-screen"
+              data-device-viewport
+              data-source-width="390"
+              data-source-height="1280"
+            >
+              <iframe
+                src="../../../pub/web/index.html"
+                title="PLOZEN Control Tower 모바일 웹 화면"
+                loading="eager"
+                scrolling="no"
+              ></iframe>
+            </div>
+          </article>
+        </section>
+
+        <section class="detail-copy-stack web-detail-copy-stack" aria-label="운영형 웹 핵심 흐름">
+          <p>DASHBOARD</p>
+          <p>MEMBER DIRECTORY</p>
+          <p>QR MANAGEMENT</p>
+          <p>PUSH DELIVERY</p>
+        </section>
+
+        <footer class="detail-footer web-detail-footer">
+          <p>PLOSTACK WEB OPS</p>
+          <strong>Responsive web admin sample · 2026</strong>
+        </footer>
+      </article>
+    </main>
+    <script>
+      const deviceViewports = Array.from(document.querySelectorAll("[data-device-viewport]"));
+
+      const lockIframeScroll = (iframe) => {
+        try {
+          const doc = iframe.contentDocument;
+          if (!doc) return;
+          doc.documentElement.style.overflow = "hidden";
+          if (doc.body) {
+            doc.body.style.overflow = "hidden";
+          }
+        } catch (error) {
+          // Same-origin embeds are expected, but capture should tolerate a future source split.
+        }
+      };
+
+      const resizeDeviceIframes = () => {
+        deviceViewports.forEach((viewport) => {
+          const sourceWidth = Number(viewport.dataset.sourceWidth);
+          const sourceHeight = Number(viewport.dataset.sourceHeight);
+          const iframe = viewport.querySelector("iframe");
+          if (!sourceWidth || !sourceHeight || !iframe) return;
+
+          const scale = viewport.clientWidth / sourceWidth;
+          viewport.style.setProperty("--web-frame-source-width", `${sourceWidth}px`);
+          viewport.style.setProperty("--web-frame-source-height", `${sourceHeight}px`);
+          viewport.style.setProperty("--web-frame-scale", String(scale));
+          lockIframeScroll(iframe);
+        });
+      };
+
+      deviceViewports.forEach((viewport) => {
+        const iframe = viewport.querySelector("iframe");
+        iframe?.addEventListener("load", () => {
+          resizeDeviceIframes();
+          lockIframeScroll(iframe);
+        });
+      });
+
+      if ("ResizeObserver" in window) {
+        const deviceObserver = new ResizeObserver(resizeDeviceIframes);
+        deviceViewports.forEach((viewport) => deviceObserver.observe(viewport));
+      }
+
+      window.addEventListener("load", resizeDeviceIframes);
+      window.addEventListener("resize", resizeDeviceIframes);
+      resizeDeviceIframes();
+    </script>
+  </body>
+</html>
