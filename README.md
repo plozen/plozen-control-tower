@@ -41,5 +41,6 @@ npm run design-kit:local
 npm run design-kit:doctor
 ```
 
-The design kit is a planning and visual proof workspace. Product implementation should start only after the public Control Tower scope and `DESIGN.md` direction are approved.
+Open the local design kit preview at `http://127.0.0.1:8095/`.
 
+The design kit is a planning and visual proof workspace. Product implementation should start only after the public Control Tower scope and `DESIGN.md` direction are approved.
