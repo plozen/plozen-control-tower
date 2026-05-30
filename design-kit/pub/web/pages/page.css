@@ -539,8 +539,7 @@ a {
   display: block;
   height: 12px;
   overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(47, 143, 87, 0.16) 0 30%, rgba(215, 162, 29, 0.22) 30% 60%, rgba(176, 68, 61, 0.18) 60% 90%, rgba(176, 68, 61, 0.28) 90% 100%);
+  background: rgba(23, 32, 25, 0.08);
 }
 
 .resource-readout i::before {
@@ -549,16 +548,6 @@ a {
   width: var(--value);
   content: "";
   background: currentColor;
-}
-
-.resource-readout i::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background:
-    linear-gradient(90deg, transparent 29.8%, rgba(255, 255, 255, 0.95) 29.8% 30.2%, transparent 30.2%),
-    linear-gradient(90deg, transparent 59.8%, rgba(255, 255, 255, 0.95) 59.8% 60.2%, transparent 60.2%),
-    linear-gradient(90deg, transparent 89.8%, rgba(255, 255, 255, 0.95) 89.8% 90.2%, transparent 90.2%);
 }
 
 .resource-readout--ok {
