@@ -145,8 +145,7 @@ a {
   gap: 8px;
 }
 
-.sidebar-nav a,
-.nav-group p {
+.sidebar-nav a {
   display: flex;
   min-height: 36px;
   align-items: center;
@@ -164,27 +163,6 @@ a {
 .sidebar-nav .is-active {
   background: rgba(255, 255, 255, 0.1);
   color: var(--white);
-}
-
-.nav-group {
-  display: grid;
-  gap: 1px;
-  padding: 8px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.nav-group p {
-  min-height: 26px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.42);
-  font-size: 11px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.nav-group a {
-  padding-left: 24px;
-  font-size: 12px;
 }
 
 .sidebar-nav--flat a {
@@ -1004,23 +982,6 @@ td {
 
   .sidebar-nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .nav-group {
-    padding: 6px 0;
-  }
-
-  .nav-group--knowledge {
-    grid-column: 1 / -1;
-  }
-
-  .nav-group--knowledge p {
-    grid-column: 1 / -1;
-  }
-
-  .nav-group--knowledge a {
-    min-height: 34px;
-    padding-left: 12px;
   }
 
   .dashboard-main {
