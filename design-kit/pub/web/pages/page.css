@@ -266,10 +266,6 @@ a {
   background: rgba(255, 255, 255, 0.58);
 }
 
-.metric-strip--five {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
 .metric-strip div {
   position: relative;
   min-height: 88px;
@@ -575,10 +571,6 @@ a {
   background: var(--surface);
 }
 
-.status-chart-grid--four {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .chart-panel {
   min-width: 0;
   min-height: 294px;
@@ -727,14 +719,6 @@ a {
   background: var(--red);
 }
 
-.knowledge-mini-list {
-  display: grid;
-  min-height: 220px;
-  align-content: center;
-  border-top: 1px solid var(--line);
-}
-
-.knowledge-mini-list div,
 .api-step-list div,
 .upload-queue div {
   display: flex;
@@ -745,7 +729,6 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
-.knowledge-mini-list strong,
 .upload-queue strong,
 .api-step-list dt {
   color: var(--muted);
@@ -754,7 +737,6 @@ a {
   line-height: 1.25;
 }
 
-.knowledge-mini-list span,
 .api-step-list dd {
   margin: 0;
   color: var(--ink);
@@ -762,15 +744,6 @@ a {
   font-weight: 850;
   line-height: 1.25;
   text-align: right;
-}
-
-.state-text {
-  font-size: 13px;
-  font-weight: 850;
-}
-
-.state-text--ok {
-  color: var(--green-deep);
 }
 
 .knowledge-section,
@@ -1077,7 +1050,6 @@ td {
 
   .resource-readout-grid,
   .status-chart-grid,
-  .status-chart-grid--four,
   .knowledge-grid,
   .pie-summary {
     grid-template-columns: 1fr;
