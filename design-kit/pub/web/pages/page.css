@@ -647,7 +647,7 @@ a {
 }
 
 .pie-chart--docker {
-  background: conic-gradient(var(--green) 0 83.3%, var(--yellow) 83.3% 91.7%, var(--red) 91.7% 100%);
+  background: var(--green);
 }
 
 .pie-chart--automation {

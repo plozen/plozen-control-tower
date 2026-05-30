@@ -49,15 +49,15 @@
         </header>
 
         <dl class="metric-strip metric-strip--status" aria-label="운영 상태 지표">
-          <div class="metric-card metric-card--critical">
+          <div class="metric-card metric-card--warn">
             <dt>Resource</dt>
-            <dd><span class="status-dot"></span>심각</dd>
+            <dd><span class="status-dot"></span>주의</dd>
             <small>Memory 80%</small>
           </div>
-          <div class="metric-card metric-card--critical">
+          <div class="metric-card metric-card--ok">
             <dt>Docker</dt>
-            <dd><span class="status-dot"></span>심각</dd>
-            <small>Unhealthy 1개</small>
+            <dd><span class="status-dot"></span>정상</dd>
+            <small>Running 12/12</small>
           </div>
           <div class="metric-card metric-card--ok">
             <dt>Automation</dt>
@@ -117,14 +117,14 @@
               </div>
             </header>
             <div class="pie-summary">
-              <div class="pie-chart pie-chart--docker" role="img" aria-label="Docker 컨테이너 12개 중 10개 실행, 1개 중지, 1개 비정상">
-                <strong>83%</strong>
+              <div class="pie-chart pie-chart--docker" role="img" aria-label="Docker 컨테이너 12개 모두 실행 중">
+                <strong>100%</strong>
                 <span>Running</span>
               </div>
               <dl class="chart-legend">
-                <div><dt><i class="legend-dot legend-dot--green"></i>Running</dt><dd>10개</dd></div>
-                <div><dt><i class="legend-dot legend-dot--amber"></i>Stopped</dt><dd>1개</dd></div>
-                <div><dt><i class="legend-dot legend-dot--red"></i>Unhealthy</dt><dd>1개</dd></div>
+                <div><dt><i class="legend-dot legend-dot--green"></i>Running</dt><dd>12개</dd></div>
+                <div><dt><i class="legend-dot legend-dot--amber"></i>Stopped</dt><dd>0개</dd></div>
+                <div><dt><i class="legend-dot legend-dot--red"></i>Unhealthy</dt><dd>0개</dd></div>
                 <div><dt>최근 갱신</dt><dd>30초 전</dd></div>
               </dl>
             </div>
