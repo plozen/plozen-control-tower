@@ -32,16 +32,16 @@ html[data-viewport="mobile"] {
 }
 
 html {
-  width: var(--web-width);
-  min-width: var(--web-width);
+  width: 100%;
+  min-width: 0;
   min-height: var(--web-min-height);
   background: var(--paper);
   color: var(--ink);
 }
 
 body {
-  width: var(--web-width);
-  min-width: var(--web-width);
+  width: 100%;
+  min-width: 0;
   min-height: var(--web-min-height);
   margin: 0;
   background: var(--paper);
@@ -68,7 +68,7 @@ a {
 }
 
 .web-page {
-  width: var(--web-width);
+  width: min(100%, var(--web-width));
   min-height: var(--web-min-height);
 }
 
@@ -310,7 +310,7 @@ a {
 }
 
 .operations-board--dashboard {
-  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.6fr);
+  grid-template-columns: 1fr;
 }
 
 .operations-board--system {
@@ -326,7 +326,7 @@ a {
 }
 
 .board-cell--wide {
-  min-height: 252px;
+  min-height: 306px;
 }
 
 .board-cell header,
@@ -432,9 +432,73 @@ a {
   background: var(--green);
 }
 
-.status-chart-grid {
+.resource-readout-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.resource-readout {
+  display: grid;
+  min-width: 0;
+  align-content: end;
+  gap: 14px;
+  min-height: 174px;
+  padding: 24px 22px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.resource-readout:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+
+.resource-readout span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.resource-readout strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1.04;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resource-readout em {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.resource-readout i {
+  position: relative;
+  display: block;
+  height: 12px;
+  overflow: hidden;
+  background: rgba(23, 32, 25, 0.08);
+}
+
+.resource-readout i::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--value);
+  content: "";
+  background: var(--green);
+}
+
+.status-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 18px;
   border-top: 1px solid var(--line-strong);
   border-left: 1px solid var(--line);
@@ -443,7 +507,8 @@ a {
 
 .chart-panel {
   min-width: 0;
-  padding: 17px 18px;
+  min-height: 294px;
+  padding: 18px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -465,16 +530,16 @@ a {
 
 .pie-summary {
   display: grid;
-  grid-template-columns: 152px minmax(0, 1fr);
-  gap: 22px;
-  align-items: center;
-  min-height: 166px;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  justify-items: center;
+  min-height: 220px;
 }
 
 .pie-chart {
   position: relative;
   display: grid;
-  width: 142px;
+  width: 156px;
   aspect-ratio: 1;
   place-items: center;
   overflow: hidden;
@@ -501,7 +566,7 @@ a {
 
 .pie-chart strong {
   align-self: end;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 900;
   line-height: 1;
 }
@@ -519,12 +584,17 @@ a {
   background: conic-gradient(var(--green) 0 91.7%, var(--amber) 91.7% 100%);
 }
 
+.pie-chart--automation {
+  background: conic-gradient(var(--green) 0 98.4%, var(--amber) 98.4% 100%);
+}
+
 .pie-chart--logs {
   background: conic-gradient(var(--green) 0 97.7%, var(--amber) 97.7% 100%);
 }
 
 .chart-legend {
   display: grid;
+  width: 100%;
   margin: 0;
   border-top: 1px solid var(--line);
 }
@@ -722,10 +792,6 @@ td {
   grid-template-columns: 72px minmax(0, 1fr) 52px;
 }
 
-.resource-bars--server div {
-  grid-template-columns: 190px minmax(0, 1fr) 52px;
-}
-
 @media (max-width: 900px) {
   .dashboard-screen {
     display: block;
@@ -773,22 +839,29 @@ td {
     grid-template-columns: 1fr;
   }
 
+  .resource-readout-grid,
   .status-chart-grid,
   .pie-summary {
     grid-template-columns: 1fr;
   }
 
+  .resource-readout {
+    min-height: 154px;
+    padding: 20px 18px 18px;
+    border-right: 0;
+  }
+
+  .resource-readout strong {
+    font-size: 27px;
+  }
+
   .pie-chart {
-    width: 136px;
+    width: 146px;
   }
 
   .bar-list div,
   .resource-bars div {
     grid-template-columns: 92px minmax(0, 1fr) 42px;
-  }
-
-  .resource-bars--server div {
-    grid-template-columns: 118px minmax(0, 1fr) 42px;
   }
 
   table {

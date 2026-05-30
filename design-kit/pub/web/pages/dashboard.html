@@ -55,14 +55,14 @@
             <small>운영 가능</small>
           </div>
           <div>
+            <dt>자원 상태</dt>
+            <dd>주의</dd>
+            <small class="delta-down">Memory 72%</small>
+          </div>
+          <div>
             <dt>Docker</dt>
             <dd>11/12</dd>
             <small class="delta-down">1개 확인 필요</small>
-          </div>
-          <div>
-            <dt>Automation</dt>
-            <dd>98.4%</dd>
-            <small>24시간 성공률</small>
           </div>
           <div>
             <dt>확인 필요</dt>
@@ -80,31 +80,36 @@
               </div>
               <span class="board-label">Live snapshot</span>
             </header>
-            <div class="resource-bars resource-bars--server">
-              <div><span>CPU · Load 1.46</span><i style="--value: 18%"></i><strong>18%</strong></div>
-              <div><span>Memory · 46.1GB / 64GB</span><i style="--value: 72%"></i><strong>72%</strong></div>
-              <div><span>SSD Root · 297GB / 512GB</span><i style="--value: 58%"></i><strong>58%</strong></div>
-              <div><span>HDD Data · 1.6TB / 4TB</span><i style="--value: 41%"></i><strong>41%</strong></div>
-              <div><span>Docker</span><i style="--value: 92%"></i><strong>11/12</strong></div>
-            </div>
-          </article>
-
-          <article class="board-cell">
-            <header>
-              <div>
-                <p class="eyebrow">Automation</p>
-                <h2>자동화 요약</h2>
+            <div class="resource-readout-grid">
+              <div class="resource-readout">
+                <span>CPU Load</span>
+                <strong>Load 1.46</strong>
+                <em>현재 사용률 18%</em>
+                <i style="--value: 18%"></i>
               </div>
-            </header>
-            <div class="bar-list">
-              <div><span>Workflow</span><i style="--value: 98%"></i><strong>98%</strong></div>
-              <div><span>Schedule</span><i style="--value: 91%"></i><strong>91%</strong></div>
-              <div><span>Retry</span><i style="--value: 8%"></i><strong>2건</strong></div>
+              <div class="resource-readout">
+                <span>Memory</span>
+                <strong>46.1GB / 64GB</strong>
+                <em>전체 메모리의 72%</em>
+                <i style="--value: 72%"></i>
+              </div>
+              <div class="resource-readout">
+                <span>SSD Root</span>
+                <strong>297GB / 512GB</strong>
+                <em>루트 디스크 58%</em>
+                <i style="--value: 58%"></i>
+              </div>
+              <div class="resource-readout">
+                <span>HDD Data</span>
+                <strong>1.6TB / 4TB</strong>
+                <em>데이터 볼륨 41%</em>
+                <i style="--value: 41%"></i>
+              </div>
             </div>
           </article>
         </section>
 
-        <section class="status-chart-grid" aria-label="Docker와 로그 상태 분포">
+        <section class="status-chart-grid" aria-label="Docker, 자동화, 로그 상태 분포">
           <article class="chart-panel">
             <header>
               <div>
@@ -123,6 +128,28 @@
                 <div><dt><i class="legend-dot legend-dot--amber"></i>Stopped</dt><dd>1개</dd></div>
                 <div><dt><i class="legend-dot legend-dot--red"></i>Unhealthy</dt><dd>0개</dd></div>
                 <div><dt>최근 갱신</dt><dd>30초 전</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="chart-panel">
+            <header>
+              <div>
+                <p class="eyebrow">Automation</p>
+                <h2>자동화 실행 분포</h2>
+              </div>
+              <span class="board-label">24h success</span>
+            </header>
+            <div class="pie-summary">
+              <div class="pie-chart pie-chart--automation" role="img" aria-label="최근 24시간 자동화 성공률 98.4%, 재시도 2건, 실패 0건">
+                <strong>98.4%</strong>
+                <span>성공률</span>
+              </div>
+              <dl class="chart-legend">
+                <div><dt><i class="legend-dot legend-dot--green"></i>성공</dt><dd>62회</dd></div>
+                <div><dt><i class="legend-dot legend-dot--amber"></i>재시도</dt><dd>2건</dd></div>
+                <div><dt><i class="legend-dot legend-dot--red"></i>실패</dt><dd>0건</dd></div>
+                <div><dt>스케줄 정상률</dt><dd>91%</dd></div>
               </dl>
             </div>
           </article>
