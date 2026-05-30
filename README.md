@@ -1,6 +1,6 @@
-# PLOZEN Control Tower
+# PLOZEN Ops Console
 
-PLOZEN Control Tower is a public, clean-start dashboard for observing PLOZEN's AI operations, knowledge search, and automation status.
+PLOZEN Ops Console is a public, clean-start dashboard for observing PLOZEN's AI operations, knowledge search, and automation status.
 
 This repository replaces the idea of opening the legacy `plozen-console` codebase. The legacy console stays private because it may contain internal experiments, stale product code, and sensitive operational assumptions.
 
@@ -43,4 +43,4 @@ npm run design-kit:doctor
 
 Open the local design kit preview at `http://127.0.0.1:8095/`.
 
-The design kit is a planning and visual proof workspace. Product implementation should start only after the public Control Tower scope and `DESIGN.md` direction are approved.
+The design kit is a planning and visual proof workspace. Product implementation should start only after the public Ops Console scope and `DESIGN.md` direction are approved.

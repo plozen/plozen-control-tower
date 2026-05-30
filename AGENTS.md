@@ -1,8 +1,8 @@
-# PLOZEN Control Tower Agent Rules
+# PLOZEN Ops Console Agent Rules
 
 ## Identity
 
-This repository is the public clean-start control dashboard for PLOZEN. It is not the legacy `plozen-console` repository.
+This repository is the public clean-start operations dashboard for PLOZEN. It is not the legacy `plozen-console` repository.
 
 ## Public Boundary
 
@@ -15,7 +15,7 @@ This repository is the public clean-start control dashboard for PLOZEN. It is no
 
 Initial product target:
 
-- Central control tower for public-safe AI operation visibility.
+- Central operations console for public-safe AI operation visibility.
 - First MVP focuses on PLOZEN Knowledge API read-only workflows.
 - Write/ingest/admin actions are a later phase after the read-only search dashboard is validated.
 
@@ -33,4 +33,3 @@ Before commit or push:
 - `npm run design-kit:doctor`
 - `git diff --check`
 - secret scan if `gitleaks` or another scanner is available locally
-
