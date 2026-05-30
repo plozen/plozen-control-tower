@@ -562,44 +562,8 @@ td {
   line-height: 1.25;
 }
 
-.status-note {
-  display: grid;
-  gap: 10px;
-  padding: 14px;
-  border-top: 2px solid var(--green-deep);
-  background: rgba(255, 255, 255, 0.58);
-}
-
-.status-note strong {
-  font-size: 18px;
-  font-weight: 850;
-}
-
-.status-note span,
-.status-note p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 750;
-  line-height: 1.45;
-}
-
-.container-list {
-  display: grid;
-  border-top: 1px solid var(--line-strong);
-}
-
-.container-list div {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 6px 12px;
-  min-height: 58px;
-  align-content: center;
-  border-bottom: 1px solid var(--line);
-}
-
-.container-list em {
-  grid-column: 1 / -1;
+.resource-bars--compact div {
+  grid-template-columns: 72px minmax(0, 1fr) 52px;
 }
 
 @media (max-width: 900px) {
@@ -668,10 +632,10 @@ td {
     white-space: normal;
   }
 
-  .system-table-section th:nth-child(3),
-  .system-table-section td:nth-child(3),
-  .system-table-section th:nth-child(5),
-  .system-table-section td:nth-child(5) {
+  .docker-detail-table th:nth-child(5),
+  .docker-detail-table td:nth-child(5),
+  .docker-detail-table th:nth-child(7),
+  .docker-detail-table td:nth-child(7) {
     display: none;
   }
 }

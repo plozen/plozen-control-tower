@@ -46,7 +46,11 @@
             <a href="#">스케줄</a>
             <a href="#">실행 로그</a>
           </section>
-          <a class="nav-link" href="#">시스템 상태</a>
+          <section class="nav-group" aria-label="시스템 관리">
+            <p>System</p>
+            <a href="#">Docker 상세</a>
+            <a href="#">스케줄</a>
+          </section>
         </nav>
       </aside>
 
@@ -159,13 +163,14 @@
             <header>
               <div>
                 <p class="eyebrow">System</p>
-                <h2>서버 요약</h2>
+                <h2>13번 서버 자원</h2>
               </div>
             </header>
-            <div class="row-list">
-              <div><strong>CPU</strong><span>18% · Load 1.46</span></div>
-              <div><strong>Memory</strong><span>72% · 46.1GB 사용</span></div>
-              <div><strong>Docker</strong><span>11 / 12 running</span></div>
+            <div class="resource-bars resource-bars--compact">
+              <div><span>CPU</span><i style="--value: 18%"></i><strong>18%</strong></div>
+              <div><span>Memory</span><i style="--value: 72%"></i><strong>72%</strong></div>
+              <div><span>SSD</span><i style="--value: 58%"></i><strong>58%</strong></div>
+              <div><span>Docker</span><i style="--value: 92%"></i><strong>11/12</strong></div>
             </div>
           </article>
         </section>
