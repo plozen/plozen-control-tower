@@ -12,4 +12,4 @@ Current routes:
 - `/pub/?screen=notices`
 - `/pub/?screen=map`
 
-Local live-map secrets belong in `pub/kakao-config.local.js`, which is ignored by git. Load it with `/pub/?localConfig=1`, or pass a temporary review key with `/pub/?kakaoKey=YOUR_KEY`.
+Local live-map secrets belong in `pub/kakao-config.local.js`, which is ignored by git. Load local-only values with `/pub/?localConfig=1`; do not pass review keys through URL parameters.
