@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PLOZEN Knowledge 관리</title>
+    <meta name="description" content="PLOZEN Ops Console Knowledge Vector DB와 문서 임베딩 관리 raw page" />
+    <link rel="icon" href="data:," />
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      document.documentElement.dataset.viewport = params.get("viewport") || "desktop";
+      if (params.get("embed")) {
+        document.documentElement.dataset.embed = "1";
+      }
+    </script>
+    <link rel="stylesheet" href="./page.css" />
+  </head>
+  <body>
+    <main class="web-page dashboard-screen" aria-labelledby="knowledge-title">
+      <aside class="dashboard-sidebar" aria-label="관리자 메뉴">
+        <a class="brand-lockup" href="#" aria-label="PLOZEN Ops Console 관리자 홈">
+          <span class="brand-mark">P</span>
+          <span class="brand-copy">
+            <strong>PLOZEN Ops Console</strong>
+            <em>시스템 관리자</em>
+          </span>
+        </a>
+
+        <nav class="sidebar-nav" aria-label="운영 메뉴">
+          <a class="nav-link" href="./dashboard.html?viewport=desktop">대시보드</a>
+          <a class="nav-link" href="#">서버</a>
+          <a class="nav-link" href="./system.html?viewport=desktop">Docker</a>
+          <a class="nav-link" href="#">Automation</a>
+          <a class="nav-link" href="#">Logs</a>
+          <div class="nav-group nav-group--knowledge">
+            <p>Knowledge</p>
+            <a class="nav-link is-active" href="#vector-db">Vector DB</a>
+            <a class="nav-link" href="#document-upload">문서 업로드</a>
+            <a class="nav-link" href="#embedding-api">임베딩·청킹 API</a>
+          </div>
+        </nav>
+      </aside>
+
+      <section class="dashboard-main">
+        <header class="dashboard-header">
+          <div>
+            <p class="eyebrow">Knowledge</p>
+            <h1 id="knowledge-title">Knowledge 관리</h1>
+            <p>Vector DB 적재 상태, 문서 업로드, 임베딩·청킹 API 호출 흐름을 한 화면에서 확인합니다.</p>
+          </div>
+          <div class="header-actions" aria-label="Knowledge 액션">
+            <span>동기화 1분 전</span>
+            <button type="button">새로고침</button>
+          </div>
+        </header>
+
+        <dl class="metric-strip" aria-label="Knowledge 핵심 지표">
+          <div>
+            <dt>Documents</dt>
+            <dd>1,284</dd>
+            <small>운영 문서 기준</small>
+          </div>
+          <div>
+            <dt>Chunks</dt>
+            <dd>18.4K</dd>
+            <small>평균 812 tokens</small>
+          </div>
+          <div>
+            <dt>Embedding Queue</dt>
+            <dd>7건</dd>
+            <small class="delta-down">대기 5 · 실패 2</small>
+          </div>
+          <div>
+            <dt>API Status</dt>
+            <dd>정상</dd>
+            <small>평균 420ms</small>
+          </div>
+        </dl>
+
+        <section id="vector-db" class="knowledge-section" aria-label="Vector DB 데이터">
+          <header>
+            <div>
+              <p class="eyebrow">Vector DB</p>
+              <h2>Vector DB 데이터</h2>
+            </div>
+          </header>
+          <table class="knowledge-table">
+            <thead>
+              <tr>
+                <th>Collection</th>
+                <th>Documents</th>
+                <th>Chunks</th>
+                <th>Model</th>
+                <th>Last Sync</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>plozen-ops</td>
+                <td>412</td>
+                <td>6,840</td>
+                <td>text-embedding-3-large</td>
+                <td>1분 전</td>
+                <td><span class="state state--done">ready</span></td>
+              </tr>
+              <tr>
+                <td>project-portfolio</td>
+                <td>286</td>
+                <td>4,210</td>
+                <td>text-embedding-3-large</td>
+                <td>12분 전</td>
+                <td><span class="state state--done">ready</span></td>
+              </tr>
+              <tr>
+                <td>session-memory</td>
+                <td>536</td>
+                <td>6,920</td>
+                <td>text-embedding-3-small</td>
+                <td>28분 전</td>
+                <td><span class="state state--wait">대기</span></td>
+              </tr>
+              <tr>
+                <td>client-delivery</td>
+                <td>50</td>
+                <td>430</td>
+                <td>text-embedding-3-small</td>
+                <td>2시간 전</td>
+                <td><span class="state state--live">일부</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="knowledge-grid" aria-label="Knowledge 작업 패널">
+          <article id="document-upload" class="knowledge-panel">
+            <header>
+              <div>
+                <p class="eyebrow">Document Upload</p>
+                <h2>문서 업로드</h2>
+              </div>
+            </header>
+            <div class="upload-dropzone">
+              <strong>PDF · DOCX · Markdown</strong>
+              <span>업로드 후 collection 선택, chunk 옵션 확인, embedding queue로 전송</span>
+            </div>
+            <div class="upload-queue">
+              <div><strong>plozen-harness-notes.md</strong><span class="state state--done">ready</span></div>
+              <div><strong>resume-keywords.pdf</strong><span class="state state--wait">chunking</span></div>
+              <div><strong>client-delivery-spec.docx</strong><span class="state state--live">uploaded</span></div>
+            </div>
+            <div class="button-row">
+              <button type="button">업로드</button>
+              <button type="button">Queue 전송</button>
+            </div>
+          </article>
+
+          <article id="embedding-api" class="knowledge-panel">
+            <header>
+              <div>
+                <p class="eyebrow">Embedding API</p>
+                <h2>임베딩·청킹 API 호출</h2>
+              </div>
+            </header>
+            <div class="api-action-grid">
+              <button type="button">Chunk Preview</button>
+              <button type="button">Embedding Run</button>
+              <button type="button">Re-index</button>
+            </div>
+            <dl class="api-step-list">
+              <div><dt>Endpoint</dt><dd>/api/knowledge/embed</dd></div>
+              <div><dt>Chunk Size</dt><dd>800 tokens</dd></div>
+              <div><dt>Overlap</dt><dd>120 tokens</dd></div>
+              <div><dt>Retry</dt><dd>3회</dd></div>
+            </dl>
+          </article>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
