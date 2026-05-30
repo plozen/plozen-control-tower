@@ -12,8 +12,11 @@
   --green-deep: #1d5a38;
   --green-soft: #dbeee1;
   --amber: #b97a2d;
+  --yellow: #d7a21d;
+  --yellow-deep: #8f650f;
   --blue: #2b78c5;
   --red: #b0443d;
+  --red-deep: #8f2824;
   font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -329,25 +332,25 @@ a {
   color: var(--green-deep);
 }
 
-.metric-card--ok::before {
+.metric-strip--status .metric-card--ok::before {
   background: var(--green);
 }
 
 .metric-card--warn dd,
 .metric-card--warn small {
-  color: var(--amber);
+  color: var(--yellow-deep);
 }
 
-.metric-card--warn::before {
-  background: var(--amber);
+.metric-strip--status .metric-card--warn::before {
+  background: var(--yellow);
 }
 
 .metric-card--critical dd,
 .metric-card--critical small {
-  color: var(--red);
+  color: var(--red-deep);
 }
 
-.metric-card--critical::before {
+.metric-strip--status .metric-card--critical::before {
   background: var(--red);
 }
 
@@ -497,6 +500,7 @@ a {
   min-height: 174px;
   padding: 24px 22px 20px;
   border-bottom: 1px solid var(--line);
+  color: var(--green);
 }
 
 .resource-readout:nth-child(odd) {
@@ -523,7 +527,7 @@ a {
 }
 
 .resource-readout em {
-  color: var(--muted);
+  color: currentColor;
   font-size: 13px;
   font-style: normal;
   font-weight: 800;
@@ -535,7 +539,8 @@ a {
   display: block;
   height: 12px;
   overflow: hidden;
-  background: rgba(23, 32, 25, 0.08);
+  background:
+    linear-gradient(90deg, rgba(47, 143, 87, 0.16) 0 30%, rgba(215, 162, 29, 0.22) 30% 60%, rgba(176, 68, 61, 0.18) 60% 90%, rgba(176, 68, 61, 0.28) 90% 100%);
 }
 
 .resource-readout i::before {
@@ -543,7 +548,29 @@ a {
   inset: 0 auto 0 0;
   width: var(--value);
   content: "";
-  background: var(--green);
+  background: currentColor;
+}
+
+.resource-readout i::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, transparent 29.8%, rgba(255, 255, 255, 0.95) 29.8% 30.2%, transparent 30.2%),
+    linear-gradient(90deg, transparent 59.8%, rgba(255, 255, 255, 0.95) 59.8% 60.2%, transparent 60.2%),
+    linear-gradient(90deg, transparent 89.8%, rgba(255, 255, 255, 0.95) 89.8% 90.2%, transparent 90.2%);
+}
+
+.resource-readout--ok {
+  color: var(--green);
+}
+
+.resource-readout--warn {
+  color: var(--yellow);
+}
+
+.resource-readout--critical {
+  color: var(--red);
 }
 
 .status-chart-grid {
@@ -631,15 +658,15 @@ a {
 }
 
 .pie-chart--docker {
-  background: conic-gradient(var(--green) 0 91.7%, var(--amber) 91.7% 100%);
+  background: conic-gradient(var(--green) 0 83.3%, var(--yellow) 83.3% 91.7%, var(--red) 91.7% 100%);
 }
 
 .pie-chart--automation {
-  background: conic-gradient(var(--green) 0 98.4%, var(--amber) 98.4% 100%);
+  background: conic-gradient(var(--green) 0 98.4%, var(--yellow) 98.4% 100%);
 }
 
 .pie-chart--logs {
-  background: conic-gradient(var(--green) 0 97.7%, var(--amber) 97.7% 100%);
+  background: conic-gradient(var(--green) 0 96.2%, var(--yellow) 96.2% 98.5%, var(--red) 98.5% 100%);
 }
 
 .chart-legend {
@@ -692,7 +719,7 @@ a {
 }
 
 .legend-dot--amber {
-  background: var(--amber);
+  background: var(--yellow);
 }
 
 .legend-dot--blue {

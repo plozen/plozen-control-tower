@@ -54,20 +54,20 @@
             <dd><span class="status-dot"></span>주의</dd>
             <small>Memory 72%</small>
           </div>
-          <div class="metric-card metric-card--warn">
+          <div class="metric-card metric-card--critical">
             <dt>Docker</dt>
-            <dd><span class="status-dot"></span>주의</dd>
-            <small>Stopped 1개</small>
+            <dd><span class="status-dot"></span>심각</dd>
+            <small>Unhealthy 1개</small>
           </div>
           <div class="metric-card metric-card--ok">
             <dt>Automation</dt>
             <dd><span class="status-dot"></span>정상</dd>
             <small>성공률 98.4%</small>
           </div>
-          <div class="metric-card metric-card--warn">
+          <div class="metric-card metric-card--critical">
             <dt>Log</dt>
-            <dd><span class="status-dot"></span>주의</dd>
-            <small>주의 3건</small>
+            <dd><span class="status-dot"></span>심각</dd>
+            <small>오류 2건</small>
           </div>
         </dl>
 
@@ -78,28 +78,28 @@
                 <p class="eyebrow">Server Resources</p>
                 <h2>13번 서버 자원 사용률</h2>
               </div>
-              <span class="board-label">Live snapshot</span>
+              <span class="board-label">30 / 60 / 90 기준</span>
             </header>
             <div class="resource-readout-grid">
-              <div class="resource-readout">
+              <div class="resource-readout resource-readout--ok">
                 <span>CPU Load</span>
                 <strong>Load 1.46</strong>
                 <em>현재 사용률 18%</em>
                 <i style="--value: 18%"></i>
               </div>
-              <div class="resource-readout">
+              <div class="resource-readout resource-readout--warn">
                 <span>Memory</span>
                 <strong>46.1GB / 64GB</strong>
                 <em>전체 메모리의 72%</em>
                 <i style="--value: 72%"></i>
               </div>
-              <div class="resource-readout">
+              <div class="resource-readout resource-readout--warn">
                 <span>SSD Root</span>
                 <strong>297GB / 512GB</strong>
                 <em>루트 디스크 58%</em>
                 <i style="--value: 58%"></i>
               </div>
-              <div class="resource-readout">
+              <div class="resource-readout resource-readout--warn">
                 <span>HDD Data</span>
                 <strong>1.6TB / 4TB</strong>
                 <em>데이터 볼륨 41%</em>
@@ -119,14 +119,14 @@
               <span class="board-label">12 containers</span>
             </header>
             <div class="pie-summary">
-              <div class="pie-chart pie-chart--docker" role="img" aria-label="Docker 컨테이너 12개 중 11개 실행, 1개 중지">
-                <strong>92%</strong>
+              <div class="pie-chart pie-chart--docker" role="img" aria-label="Docker 컨테이너 12개 중 10개 실행, 1개 중지, 1개 비정상">
+                <strong>83%</strong>
                 <span>Running</span>
               </div>
               <dl class="chart-legend">
-                <div><dt><i class="legend-dot legend-dot--green"></i>Running</dt><dd>11개</dd></div>
+                <div><dt><i class="legend-dot legend-dot--green"></i>Running</dt><dd>10개</dd></div>
                 <div><dt><i class="legend-dot legend-dot--amber"></i>Stopped</dt><dd>1개</dd></div>
-                <div><dt><i class="legend-dot legend-dot--red"></i>Unhealthy</dt><dd>0개</dd></div>
+                <div><dt><i class="legend-dot legend-dot--red"></i>Unhealthy</dt><dd>1개</dd></div>
                 <div><dt>최근 갱신</dt><dd>30초 전</dd></div>
               </dl>
             </div>
@@ -163,15 +163,15 @@
               <span class="board-label">24h window</span>
             </header>
             <div class="pie-summary">
-              <div class="pie-chart pie-chart--logs" role="img" aria-label="최근 24시간 로그 131건 중 정상 128건, 주의 3건, 오류 0건">
-                <strong>3건</strong>
-                <span>주의</span>
+              <div class="pie-chart pie-chart--logs" role="img" aria-label="최근 24시간 로그 131건 중 정상 126건, 주의 3건, 오류 2건">
+                <strong>2건</strong>
+                <span>오류</span>
               </div>
               <dl class="chart-legend">
-                <div><dt><i class="legend-dot legend-dot--green"></i>정상</dt><dd>128건</dd></div>
+                <div><dt><i class="legend-dot legend-dot--green"></i>정상</dt><dd>126건</dd></div>
                 <div><dt><i class="legend-dot legend-dot--amber"></i>주의</dt><dd>3건</dd></div>
-                <div><dt><i class="legend-dot legend-dot--red"></i>오류</dt><dd>0건</dd></div>
-                <div><dt>확인 필요</dt><dd>중간 1 · 낮음 2</dd></div>
+                <div><dt><i class="legend-dot legend-dot--red"></i>오류</dt><dd>2건</dd></div>
+                <div><dt>확인 필요</dt><dd>심각 2 · 주의 3</dd></div>
               </dl>
             </div>
           </article>
