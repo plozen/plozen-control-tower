@@ -48,26 +48,26 @@
           </div>
         </header>
 
-        <dl class="metric-strip" aria-label="핵심 지표">
-          <div>
-            <dt>서버 상태</dt>
-            <dd>정상</dd>
-            <small>운영 가능</small>
+        <dl class="metric-strip metric-strip--status" aria-label="운영 상태 지표">
+          <div class="metric-card metric-card--warn">
+            <dt>Resource</dt>
+            <dd><span class="status-dot"></span>주의</dd>
+            <small>Memory 72%</small>
           </div>
-          <div>
-            <dt>자원 상태</dt>
-            <dd>주의</dd>
-            <small class="delta-down">Memory 72%</small>
-          </div>
-          <div>
+          <div class="metric-card metric-card--warn">
             <dt>Docker</dt>
-            <dd>11/12</dd>
-            <small class="delta-down">1개 확인 필요</small>
+            <dd><span class="status-dot"></span>주의</dd>
+            <small>Stopped 1개</small>
           </div>
-          <div>
-            <dt>확인 필요</dt>
-            <dd>3건</dd>
-            <small class="delta-down">중간 1 · 낮음 2</small>
+          <div class="metric-card metric-card--ok">
+            <dt>Automation</dt>
+            <dd><span class="status-dot"></span>정상</dd>
+            <small>성공률 98.4%</small>
+          </div>
+          <div class="metric-card metric-card--warn">
+            <dt>Log</dt>
+            <dd><span class="status-dot"></span>주의</dd>
+            <small>주의 3건</small>
           </div>
         </dl>
 

@@ -264,6 +264,7 @@ a {
 }
 
 .metric-strip div {
+  position: relative;
   min-height: 88px;
   padding: 15px 18px;
   border-left: 1px solid var(--line);
@@ -282,8 +283,11 @@ a {
 }
 
 .metric-strip dd {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   margin: 0;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 850;
   line-height: 1;
 }
@@ -299,6 +303,52 @@ a {
 
 .metric-strip .delta-down {
   color: var(--blue);
+}
+
+.metric-strip--status .metric-card::before {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 0;
+  height: 3px;
+  content: "";
+  background: var(--muted);
+}
+
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.metric-card--ok dd,
+.metric-card--ok small {
+  color: var(--green-deep);
+}
+
+.metric-card--ok::before {
+  background: var(--green);
+}
+
+.metric-card--warn dd,
+.metric-card--warn small {
+  color: var(--amber);
+}
+
+.metric-card--warn::before {
+  background: var(--amber);
+}
+
+.metric-card--critical dd,
+.metric-card--critical small {
+  color: var(--red);
+}
+
+.metric-card--critical::before {
+  background: var(--red);
 }
 
 .operations-board {
