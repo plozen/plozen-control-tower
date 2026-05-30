@@ -26,31 +26,12 @@
           </span>
         </a>
 
-        <nav class="sidebar-nav" aria-label="운영 메뉴">
+        <nav class="sidebar-nav sidebar-nav--flat" aria-label="운영 메뉴">
           <a class="nav-link is-active" href="#">대시보드</a>
-          <section class="nav-group" aria-label="지식 관리">
-            <p>Knowledge</p>
-            <a href="#">RAG 검색 상태</a>
-            <a href="#">문서 소스</a>
-            <a href="#">Chunk 인덱스</a>
-          </section>
-          <section class="nav-group" aria-label="에이전트 관리">
-            <p>Agents</p>
-            <a href="#">작업 큐</a>
-            <a href="#">서브에이전트</a>
-            <a href="#">검증 기록</a>
-          </section>
-          <section class="nav-group" aria-label="자동화 관리">
-            <p>Automation</p>
-            <a href="#">워크플로우</a>
-            <a href="#">스케줄</a>
-            <a href="#">실행 로그</a>
-          </section>
-          <section class="nav-group" aria-label="시스템 관리">
-            <p>System</p>
-            <a href="#">Docker 상세</a>
-            <a href="#">스케줄</a>
-          </section>
+          <a class="nav-link" href="#">서버</a>
+          <a class="nav-link" href="#">Docker</a>
+          <a class="nav-link" href="#">Automation</a>
+          <a class="nav-link" href="#">Logs</a>
         </nav>
       </aside>
 
@@ -59,7 +40,7 @@
           <div>
             <p class="eyebrow">Admin Overview</p>
             <h1 id="dashboard-title">PLOZEN 운영 대시보드</h1>
-            <p>지식 검색, 에이전트 작업, 자동화 실행, 서버 상태를 시스템 관리자 관점에서 확인합니다.</p>
+            <p>13번 서버의 컴퓨팅 자원, Docker, 자동화 상태를 시스템 관리자 관점에서 확인합니다.</p>
           </div>
           <div class="header-actions" aria-label="대시보드 액션">
             <span>동기화 2분 전</span>
@@ -67,81 +48,69 @@
           </div>
         </header>
 
-        <dl class="metric-strip" aria-label="핵심 지표">
+        <dl class="metric-strip metric-strip--six" aria-label="핵심 지표">
           <div>
-            <dt>Knowledge API</dt>
+            <dt>서버 상태</dt>
             <dd>정상</dd>
-            <small>응답 1.8초</small>
+            <small>uptime 17일</small>
           </div>
           <div>
-            <dt>Agent Queue</dt>
-            <dd>7건</dd>
-            <small>검증 대기 2건</small>
+            <dt>CPU</dt>
+            <dd>18%</dd>
+            <small>Load 1.46</small>
+          </div>
+          <div>
+            <dt>Memory</dt>
+            <dd>72%</dd>
+            <small class="delta-down">46.1GB / 64GB</small>
+          </div>
+          <div>
+            <dt>Disk</dt>
+            <dd>58%</dd>
+            <small>SSD root 기준</small>
+          </div>
+          <div>
+            <dt>Docker</dt>
+            <dd>11/12</dd>
+            <small class="delta-down">1개 확인 필요</small>
           </div>
           <div>
             <dt>Automation</dt>
-            <dd>42회</dd>
-            <small>24시간 성공률 98.4%</small>
-          </div>
-          <div>
-            <dt>13번 서버</dt>
-            <dd>주의</dd>
-            <small class="delta-down">Memory 72%</small>
+            <dd>98.4%</dd>
+            <small>24시간 성공률</small>
           </div>
         </dl>
 
-        <section class="operations-board operations-board--dashboard" aria-label="대시보드 상세">
+        <section class="operations-board operations-board--dashboard" aria-label="운영 대시보드 상세">
           <article class="board-cell board-cell--wide">
             <header>
               <div>
-                <p class="eyebrow">Agent Queue</p>
-                <h2>진행 중 작업</h2>
+                <p class="eyebrow">Server Resources</p>
+                <h2>13번 서버 자원 사용률</h2>
               </div>
-              <span class="board-label">7 active</span>
+              <span class="board-label">Live snapshot</span>
             </header>
-            <table>
-              <thead>
-                <tr>
-                  <th>작업</th>
-                  <th>담당</th>
-                  <th>단계</th>
-                  <th>상태</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>RAG 검색 API 응답 검증</td>
-                  <td>Nexus-11</td>
-                  <td>QA</td>
-                  <td><span class="state state--live">진행</span></td>
-                </tr>
-                <tr>
-                  <td>포트폴리오 증거 이미지 정리</td>
-                  <td>Documenter</td>
-                  <td>정리</td>
-                  <td><span class="state state--wait">대기</span></td>
-                </tr>
-                <tr>
-                  <td>자동화 실패 로그 분류</td>
-                  <td>Pulse-13</td>
-                  <td>분석</td>
-                  <td><span class="state state--done">완료</span></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="resource-bars resource-bars--server">
+              <div><span>CPU Load</span><i style="--value: 18%"></i><strong>18%</strong></div>
+              <div><span>Memory</span><i style="--value: 72%"></i><strong>72%</strong></div>
+              <div><span>SSD Root</span><i style="--value: 58%"></i><strong>58%</strong></div>
+              <div><span>HDD Data</span><i style="--value: 41%"></i><strong>41%</strong></div>
+              <div><span>Docker</span><i style="--value: 92%"></i><strong>11/12</strong></div>
+            </div>
           </article>
 
           <article class="board-cell">
             <header>
               <div>
-                <p class="eyebrow">Knowledge</p>
-                <h2>RAG 인덱스</h2>
+                <p class="eyebrow">Docker</p>
+                <h2>컨테이너 요약</h2>
               </div>
             </header>
             <div class="resource-list">
-              <div><strong>문서 소스</strong><span>128개</span></div>
-              <div><strong>Chunk</strong><span>9,420개</span></div>
-              <div><strong>최근 재색인</strong><span>11:24</span></div>
+              <div><strong>Running</strong><span>11개</span></div>
+              <div><strong>Stopped</strong><span>1개</span></div>
+              <div><strong>Unhealthy</strong><span>0개</span></div>
+              <div><strong>최근 갱신</strong><span>30초 전</span></div>
             </div>
           </article>
 
@@ -149,28 +118,27 @@
             <header>
               <div>
                 <p class="eyebrow">Automation</p>
-                <h2>실행 현황</h2>
+                <h2>자동화 요약</h2>
               </div>
             </header>
             <div class="bar-list">
-              <div><span>Discord relay</span><i style="--value: 92%"></i><strong>92%</strong></div>
-              <div><span>Vault sync</span><i style="--value: 86%"></i><strong>86%</strong></div>
-              <div><span>Deploy check</span><i style="--value: 74%"></i><strong>74%</strong></div>
+              <div><span>Workflow</span><i style="--value: 98%"></i><strong>98%</strong></div>
+              <div><span>Schedule</span><i style="--value: 91%"></i><strong>91%</strong></div>
+              <div><span>Retry</span><i style="--value: 8%"></i><strong>2건</strong></div>
             </div>
           </article>
 
           <article class="board-cell">
             <header>
               <div>
-                <p class="eyebrow">System</p>
-                <h2>13번 서버 자원</h2>
+                <p class="eyebrow">Logs</p>
+                <h2>최근 경고</h2>
               </div>
             </header>
-            <div class="resource-bars resource-bars--compact">
-              <div><span>CPU</span><i style="--value: 18%"></i><strong>18%</strong></div>
-              <div><span>Memory</span><i style="--value: 72%"></i><strong>72%</strong></div>
-              <div><span>SSD</span><i style="--value: 58%"></i><strong>58%</strong></div>
-              <div><span>Docker</span><i style="--value: 92%"></i><strong>11/12</strong></div>
+            <div class="row-list">
+              <div><strong>Memory</strong><span>주의 임계치 접근</span></div>
+              <div><strong>Docker</strong><span>1개 stopped</span></div>
+              <div><strong>Schedule</strong><span>재시도 2건</span></div>
             </div>
           </article>
         </section>
@@ -195,13 +163,13 @@
               <tbody>
                 <tr>
                   <td>System</td>
-                  <td>Docker 컨테이너 1건 재시작 필요</td>
+                  <td>메모리 사용률 72% 확인 필요</td>
                   <td><span class="state state--wait">중간</span></td>
                   <td>6분 전</td>
                 </tr>
                 <tr>
-                  <td>Knowledge</td>
-                  <td>신규 세션 요약 4건 인덱싱 대기</td>
+                  <td>Docker</td>
+                  <td>legacy-cache 컨테이너 stopped</td>
                   <td><span class="state state--live">낮음</span></td>
                   <td>18분 전</td>
                 </tr>
@@ -223,9 +191,9 @@
               </div>
             </header>
             <ol class="timeline-list">
-              <li><strong>서브에이전트 QA 결과 수신</strong><span>Agent · 오늘 11:42 · Nexus-11</span></li>
-              <li><strong>Knowledge chunk count 재계산</strong><span>RAG · 오늘 11:18 · 자동화</span></li>
-              <li><strong>Discord relay 상태 확인</strong><span>Automation · 오늘 10:55 · Pulse-13</span></li>
+              <li><strong>메모리 사용률 snapshot 갱신</strong><span>Server · 오늘 11:42 · 13번 서버</span></li>
+              <li><strong>Docker 컨테이너 상태 동기화</strong><span>Docker · 오늘 11:18 · 자동화</span></li>
+              <li><strong>스케줄 실행 결과 수집</strong><span>Automation · 오늘 10:55 · cron</span></li>
               <li><strong>서버 자원 상태 snapshot 갱신</strong><span>System · 오늘 10:33 · 13번 서버</span></li>
             </ol>
           </article>

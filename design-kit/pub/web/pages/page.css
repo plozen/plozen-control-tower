@@ -137,6 +137,10 @@ a {
   gap: 6px;
 }
 
+.sidebar-nav--flat {
+  gap: 8px;
+}
+
 .sidebar-nav a,
 .nav-group p {
   display: flex;
@@ -177,6 +181,10 @@ a {
 .nav-group a {
   padding-left: 24px;
   font-size: 12px;
+}
+
+.sidebar-nav--flat a {
+  padding-left: 14px;
 }
 
 .dashboard-main {
@@ -564,6 +572,10 @@ td {
 
 .resource-bars--compact div {
   grid-template-columns: 72px minmax(0, 1fr) 52px;
+}
+
+.resource-bars--server div {
+  grid-template-columns: 110px minmax(0, 1fr) 52px;
 }
 
 @media (max-width: 900px) {
