@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PLOZEN Ops Console 메인 대시보드</title>
+    <meta name="description" content="PLOZEN Ops Console 시스템 관리자 메인 대시보드 raw page" />
+    <link rel="icon" href="data:," />
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      document.documentElement.dataset.viewport = params.get("viewport") || "desktop";
+      if (params.get("embed")) {
+        document.documentElement.dataset.embed = "1";
+      }
+    </script>
+    <link rel="stylesheet" href="./page.css" />
+  </head>
+  <body>
+    <main class="web-page dashboard-screen" aria-labelledby="dashboard-title">
+      <aside class="dashboard-sidebar" aria-label="관리자 메뉴">
+        <a class="brand-lockup" href="#" aria-label="PLOZEN Ops Console 관리자 홈">
+          <span class="brand-mark">P</span>
+          <span class="brand-copy">
+            <strong>PLOZEN Ops Console</strong>
+            <em>시스템 관리자</em>
+          </span>
+        </a>
+
+        <nav class="sidebar-nav" aria-label="운영 메뉴">
+          <a class="nav-link is-active" href="#">대시보드</a>
+          <section class="nav-group" aria-label="지식 관리">
+            <p>Knowledge</p>
+            <a href="#">RAG 검색 상태</a>
+            <a href="#">문서 소스</a>
+            <a href="#">Chunk 인덱스</a>
+          </section>
+          <section class="nav-group" aria-label="에이전트 관리">
+            <p>Agents</p>
+            <a href="#">작업 큐</a>
+            <a href="#">서브에이전트</a>
+            <a href="#">검증 기록</a>
+          </section>
+          <section class="nav-group" aria-label="자동화 관리">
+            <p>Automation</p>
+            <a href="#">워크플로우</a>
+            <a href="#">스케줄</a>
+            <a href="#">실행 로그</a>
+          </section>
+          <a class="nav-link" href="#">시스템 상태</a>
+        </nav>
+      </aside>
+
+      <section class="dashboard-main">
+        <header class="dashboard-header">
+          <div>
+            <p class="eyebrow">Admin Overview</p>
+            <h1 id="dashboard-title">PLOZEN 운영 대시보드</h1>
+            <p>지식 검색, 에이전트 작업, 자동화 실행, 서버 상태를 시스템 관리자 관점에서 확인합니다.</p>
+          </div>
+          <div class="header-actions" aria-label="대시보드 액션">
+            <span>동기화 2분 전</span>
+            <button type="button">새로고침</button>
+          </div>
+        </header>
+
+        <dl class="metric-strip" aria-label="핵심 지표">
+          <div>
+            <dt>Knowledge API</dt>
+            <dd>정상</dd>
+            <small>응답 1.8초</small>
+          </div>
+          <div>
+            <dt>Agent Queue</dt>
+            <dd>7건</dd>
+            <small>검증 대기 2건</small>
+          </div>
+          <div>
+            <dt>Automation</dt>
+            <dd>42회</dd>
+            <small>24시간 성공률 98.4%</small>
+          </div>
+          <div>
+            <dt>13번 서버</dt>
+            <dd>주의</dd>
+            <small class="delta-down">Memory 72%</small>
+          </div>
+        </dl>
+
+        <section class="operations-board operations-board--dashboard" aria-label="대시보드 상세">
+          <article class="board-cell board-cell--wide">
+            <header>
+              <div>
+                <p class="eyebrow">Agent Queue</p>
+                <h2>진행 중 작업</h2>
+              </div>
+              <span class="board-label">7 active</span>
+            </header>
+            <table>
+              <thead>
+                <tr>
+                  <th>작업</th>
+                  <th>담당</th>
+                  <th>단계</th>
+                  <th>상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>RAG 검색 API 응답 검증</td>
+                  <td>Nexus-11</td>
+                  <td>QA</td>
+                  <td><span class="state state--live">진행</span></td>
+                </tr>
+                <tr>
+                  <td>포트폴리오 증거 이미지 정리</td>
+                  <td>Documenter</td>
+                  <td>정리</td>
+                  <td><span class="state state--wait">대기</span></td>
+                </tr>
+                <tr>
+                  <td>자동화 실패 로그 분류</td>
+                  <td>Pulse-13</td>
+                  <td>분석</td>
+                  <td><span class="state state--done">완료</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article class="board-cell">
+            <header>
+              <div>
+                <p class="eyebrow">Knowledge</p>
+                <h2>RAG 인덱스</h2>
+              </div>
+            </header>
+            <div class="resource-list">
+              <div><strong>문서 소스</strong><span>128개</span></div>
+              <div><strong>Chunk</strong><span>9,420개</span></div>
+              <div><strong>최근 재색인</strong><span>11:24</span></div>
+            </div>
+          </article>
+
+          <article class="board-cell">
+            <header>
+              <div>
+                <p class="eyebrow">Automation</p>
+                <h2>실행 현황</h2>
+              </div>
+            </header>
+            <div class="bar-list">
+              <div><span>Discord relay</span><i style="--value: 92%"></i><strong>92%</strong></div>
+              <div><span>Vault sync</span><i style="--value: 86%"></i><strong>86%</strong></div>
+              <div><span>Deploy check</span><i style="--value: 74%"></i><strong>74%</strong></div>
+            </div>
+          </article>
+
+          <article class="board-cell">
+            <header>
+              <div>
+                <p class="eyebrow">System</p>
+                <h2>서버 요약</h2>
+              </div>
+            </header>
+            <div class="row-list">
+              <div><strong>CPU</strong><span>18% · Load 1.46</span></div>
+              <div><strong>Memory</strong><span>72% · 46.1GB 사용</span></div>
+              <div><strong>Docker</strong><span>11 / 12 running</span></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="operations-lower" aria-label="최근 운영 기록">
+          <article class="queue-block">
+            <header>
+              <div>
+                <p class="eyebrow">Operation Queue</p>
+                <h2>확인 필요한 항목</h2>
+              </div>
+            </header>
+            <table>
+              <thead>
+                <tr>
+                  <th>영역</th>
+                  <th>요약</th>
+                  <th>우선순위</th>
+                  <th>업데이트</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>System</td>
+                  <td>Docker 컨테이너 1건 재시작 필요</td>
+                  <td><span class="state state--wait">중간</span></td>
+                  <td>6분 전</td>
+                </tr>
+                <tr>
+                  <td>Knowledge</td>
+                  <td>신규 세션 요약 4건 인덱싱 대기</td>
+                  <td><span class="state state--live">낮음</span></td>
+                  <td>18분 전</td>
+                </tr>
+                <tr>
+                  <td>Automation</td>
+                  <td>야간 워크플로우 재시도 성공</td>
+                  <td><span class="state state--done">해결</span></td>
+                  <td>32분 전</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article class="activity-block">
+            <header>
+              <div>
+                <p class="eyebrow">Recent Activity</p>
+                <h2>최근 운영 이벤트</h2>
+              </div>
+            </header>
+            <ol class="timeline-list">
+              <li><strong>서브에이전트 QA 결과 수신</strong><span>Agent · 오늘 11:42 · Nexus-11</span></li>
+              <li><strong>Knowledge chunk count 재계산</strong><span>RAG · 오늘 11:18 · 자동화</span></li>
+              <li><strong>Discord relay 상태 확인</strong><span>Automation · 오늘 10:55 · Pulse-13</span></li>
+              <li><strong>서버 자원 상태 snapshot 갱신</strong><span>System · 오늘 10:33 · 13번 서버</span></li>
+            </ol>
+          </article>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
