@@ -737,8 +737,8 @@ a {
 
 .service-status i {
   display: inline-block;
-  width: 9px;
-  height: 9px;
+  width: 6px;
+  height: 6px;
   flex: 0 0 auto;
   border-radius: 50%;
   background: currentColor;
@@ -842,15 +842,15 @@ a {
 }
 
 .service-table th:nth-child(1) {
-  width: 18%;
+  width: 30%;
 }
 
 .service-table th:nth-child(2) {
-  width: 86px;
+  width: 78px;
 }
 
 .service-table th:nth-child(3) {
-  width: 94px;
+  width: 88px;
 }
 
 .service-table th:nth-child(4) {
@@ -861,8 +861,8 @@ a {
   width: 72px;
 }
 
-.service-table th:nth-child(7) {
-  width: 180px;
+.service-table th:nth-child(6) {
+  width: 220px;
 }
 
 .service-table td {
