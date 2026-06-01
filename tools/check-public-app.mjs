@@ -139,6 +139,7 @@ assert(snapshotSource.includes("getLiveOpsSnapshot"), "runtime snapshot must use
 assert(liveSnapshotSource.includes("OPS_CONSOLE_COLLECTOR"), "live collector must support collector mode env");
 assert(liveSnapshotSource.includes("docker ps"), "live collector must inspect Docker containers");
 assert(liveSnapshotSource.includes("systemctl is-active"), "live collector must inspect systemd services");
+assert(liveSnapshotSource.includes("systemctl --user is-active"), "live collector must inspect user systemd services");
 assert(liveSnapshotSource.includes("journalctl"), "live collector must inspect host logs");
 assert(liveSnapshotSource.includes('checks.includes("error")'), "service status aggregation must not hide failed checks behind open ports");
 assert(snapshot.services.find((service) => service.name === "Ops Console")?.runtime === "Host/systemd", "Ops Console should be deployed as a host service for live host metrics");
