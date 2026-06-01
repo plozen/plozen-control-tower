@@ -25,7 +25,6 @@ const requiredCss = [
   ".upload-file-list",
   ".service-table th:first-child",
   ".state-pill i",
-  ".snapshot-badge",
   "@media (max-width: 900px)",
 ];
 
@@ -41,7 +40,6 @@ const requiredDashboardJs = [
   "renderDashboard",
   "status-chart-grid",
   "pie-chart",
-  "snapshot-badge",
 ];
 
 const requiredKnowledgeJs = [

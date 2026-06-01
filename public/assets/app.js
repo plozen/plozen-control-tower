@@ -17,7 +17,7 @@ const routes = {
   dashboard: {
     kicker: "Admin Overview",
     title: "PLOZEN 운영 Dashboard",
-    description: "공개 가능한 운영 상태, 서비스 구성, KnowledgeDB 문서 상태를 read-only로 확인합니다.",
+    description: "13번 서버의 컴퓨팅 자원, 서비스, 자동화 상태를 시스템 관리자 관점에서 확인합니다.",
   },
   services: {
     kicker: "Service Registry",

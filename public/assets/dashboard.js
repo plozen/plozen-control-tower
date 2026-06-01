@@ -259,7 +259,6 @@ function buildChartPanels(snapshot) {
 
 function renderDashboardBody(snapshot) {
   const resources = getArray(snapshot?.resources);
-  const snapshotDate = valueOrDash(snapshot?.snapshotDate);
   const chartPanels = buildChartPanels(snapshot);
 
   return `
@@ -270,7 +269,6 @@ function renderDashboardBody(snapshot) {
             <p class="eyebrow">Server Resources</p>
             <h2>13번 서버 자원 사용률</h2>
           </div>
-          <span class="snapshot-badge" title="Snapshot date">${escapeHtml(snapshotDate)}</span>
         </header>
         <div class="resource-readout-grid">${renderResourceTiles(resources)}</div>
       </article>
@@ -283,7 +281,7 @@ function renderDashboardBody(snapshot) {
 }
 
 /**
- * Renders the public-safe dashboard body into a caller-owned root.
+ * Renders the dashboard body into a caller-owned root.
  *
  * @param {{ snapshot?: object, root: Element | string | { innerHTML: string } }} params
  * @returns {{ ok: boolean, resourceCount: number, hasSnapshot: boolean }}

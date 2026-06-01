@@ -363,20 +363,6 @@ a {
   color: var(--white);
 }
 
-.snapshot-badge {
-  display: inline-flex;
-  min-height: 28px;
-  align-items: center;
-  padding: 0 10px;
-  border: 1px solid rgba(43, 120, 197, 0.24);
-  background: rgba(43, 120, 197, 0.08);
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 850;
-  line-height: 1;
-  white-space: nowrap;
-}
-
 .operations-board {
   display: grid;
   grid-template-columns: 1fr;
