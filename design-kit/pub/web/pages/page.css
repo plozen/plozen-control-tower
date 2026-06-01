@@ -218,7 +218,7 @@ a {
 .header-actions span,
 .header-actions button {
   display: inline-flex;
-  min-height: 38px;
+  min-height: 44px;
   align-items: center;
   padding: 0 12px;
   border: 1px solid var(--line);
@@ -752,6 +752,65 @@ a {
   line-height: 1.2;
 }
 
+.section-action {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--green-deep);
+  background: var(--green-deep);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.knowledge-filter-bar {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) repeat(3, minmax(132px, 0.46fr)) 96px;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.44);
+}
+
+.filter-field {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+}
+
+.filter-field span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.filter-field input,
+.filter-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.filter-submit {
+  align-self: end;
+  min-height: 44px;
+  border: 1px solid var(--green-deep);
+  background: var(--green-deep);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 850;
+}
+
 .knowledge-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -764,27 +823,148 @@ a {
   white-space: nowrap;
 }
 
-.upload-dropzone {
-  display: grid;
-  min-height: 112px;
-  align-content: center;
-  gap: 8px;
-  padding: 18px;
-  border: 1px dashed var(--line-strong);
-  background: rgba(255, 255, 255, 0.46);
+.knowledge-table th:first-child,
+.knowledge-table td:first-child,
+.knowledge-table th:nth-child(n+5),
+.knowledge-table td:nth-child(n+5) {
+  text-align: center;
 }
 
-.upload-dropzone strong {
-  font-size: 18px;
+.knowledge-table td:nth-child(2) {
+  min-width: 220px;
+  white-space: normal;
+}
+
+.knowledge-table input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--green-deep);
+}
+
+.checkbox-hitbox {
+  display: inline-grid;
+  width: 44px;
+  min-height: 44px;
+  place-items: center;
+  cursor: pointer;
+}
+
+.checkbox-hitbox:has(input:disabled) {
+  cursor: not-allowed;
+}
+
+.knowledge-table input[type="checkbox"]:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.table-action {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--green-deep);
+  background: var(--green-deep);
+  color: var(--white);
+  font-size: 12px;
   font-weight: 850;
-  line-height: 1.2;
+  white-space: nowrap;
 }
 
-.upload-dropzone span {
+.table-action:disabled {
+  border-color: var(--line-strong);
+  background: rgba(23, 32, 25, 0.06);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.table-pagination {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.pagination-controls {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(56px, auto));
+  gap: 6px;
+}
+
+.pagination-controls button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.knowledge-upload-section {
+  margin-top: 18px;
+}
+
+.upload-file-list {
+  display: grid;
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.upload-file-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 120px 90px 72px;
+  min-height: 42px;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
   color: var(--muted);
   font-size: 13px;
-  font-weight: 750;
-  line-height: 1.45;
+  font-weight: 800;
+}
+
+.upload-file-row--head {
+  min-height: 36px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.upload-file-row strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.upload-file-row button {
+  min-height: 32px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.upload-footer {
+  display: grid;
+  grid-template-columns: 320px;
+  justify-content: end;
+  margin-top: 14px;
+}
+
+.upload-footer .button-row {
+  margin-top: 0;
 }
 
 .upload-queue,
@@ -809,7 +989,7 @@ a {
 
 .button-row button,
 .api-action-grid button {
-  min-height: 40px;
+  min-height: 44px;
   border: 1px solid var(--green-deep);
   background: var(--green-deep);
   color: var(--white);
@@ -904,6 +1084,11 @@ td {
 .state--live {
   background: rgba(43, 120, 197, 0.14);
   color: var(--blue);
+}
+
+.state--error {
+  background: rgba(176, 68, 61, 0.12);
+  color: var(--red-deep);
 }
 
 .timeline-list {
@@ -1012,6 +1197,8 @@ td {
   .resource-readout-grid,
   .status-chart-grid,
   .knowledge-grid,
+  .knowledge-filter-bar,
+  .upload-footer,
   .pie-summary {
     grid-template-columns: 1fr;
   }
@@ -1048,17 +1235,137 @@ td {
     white-space: normal;
   }
 
+  .knowledge-table th:nth-child(3),
+  .knowledge-table td:nth-child(3),
   .knowledge-table th:nth-child(4),
   .knowledge-table td:nth-child(4),
   .knowledge-table th:nth-child(5),
-  .knowledge-table td:nth-child(5) {
+  .knowledge-table td:nth-child(5),
+  .knowledge-table th:nth-child(6),
+  .knowledge-table td:nth-child(6),
+  .knowledge-table th:nth-child(8),
+  .knowledge-table td:nth-child(8) {
     display: none;
+  }
+
+  .knowledge-table th:first-child,
+  .knowledge-table td:first-child {
+    width: 14%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .knowledge-table td:nth-child(2) {
+    min-width: 0;
+    width: 39%;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+  .knowledge-table th:nth-child(7),
+  .knowledge-table td:nth-child(7) {
+    width: 19%;
+  }
+
+  .knowledge-table th:nth-child(9),
+  .knowledge-table td:nth-child(9) {
+    width: 28%;
   }
 
   .knowledge-table th,
   .knowledge-table td {
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     white-space: normal;
+  }
+
+  .section-action,
+  .table-action {
+    min-height: 44px;
+  }
+
+  .table-action {
+    width: 100%;
+    padding: 0 6px;
+    font-size: 11px;
+  }
+
+  .knowledge-filter-bar {
+    padding: 10px 0;
+    border-left: 0;
+    border-right: 0;
+    background: transparent;
+  }
+
+  .filter-field input,
+  .filter-field select {
+    min-height: 44px;
+  }
+
+  .filter-submit {
+    min-height: 44px;
+  }
+
+  .table-pagination {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 8px;
+  }
+
+  .table-pagination > span:nth-child(2) {
+    justify-self: end;
+  }
+
+  .pagination-controls {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+  }
+
+  .pagination-controls button {
+    min-height: 44px;
+  }
+
+  .upload-file-row {
+    grid-template-areas:
+      "name name action"
+      "type size action";
+    grid-template-columns: minmax(0, 1fr) 64px 54px;
+    min-height: 68px;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 4px;
+    font-size: 12px;
+  }
+
+  .upload-file-row--head {
+    display: none;
+  }
+
+  .upload-file-row strong {
+    grid-area: name;
+    align-self: end;
+  }
+
+  .upload-file-row span:nth-of-type(1) {
+    grid-area: type;
+  }
+
+  .upload-file-row span:nth-of-type(2) {
+    grid-area: size;
+  }
+
+  .upload-file-row span:nth-of-type(1),
+  .upload-file-row span:nth-of-type(2) {
+    display: inline-flex;
+    min-height: 24px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.48);
+  }
+
+  .upload-file-row button {
+    grid-area: action;
+    min-height: 44px;
   }
 
   .api-action-grid {
