@@ -48,87 +48,24 @@
           </div>
         </header>
 
-        <dl class="metric-strip metric-strip--status" aria-label="서비스 상태 지표">
+        <dl class="metric-strip metric-strip--status metric-strip--service" aria-label="서비스 상태 지표">
           <div class="metric-card metric-card--ok">
             <dt>정상</dt>
             <dd><span class="status-dot"></span>7개</dd>
-            <small>외부 접속 또는 health 확인</small>
           </div>
           <div class="metric-card metric-card--warn">
             <dt>주의</dt>
             <dd><span class="status-dot"></span>1개</dd>
-            <small>dispatcher 전환 예정</small>
           </div>
           <div class="metric-card metric-card--critical">
             <dt>에러</dt>
             <dd><span class="status-dot"></span>0개</dd>
-            <small>즉시 조치 대상 없음</small>
           </div>
           <div class="metric-card metric-card--unknown">
             <dt>미확인</dt>
             <dd><span class="status-dot"></span>1개</dd>
-            <small>포트 미노출 서비스</small>
           </div>
         </dl>
-
-        <section class="operations-board operations-board--service" aria-label="서비스 운영 요약">
-          <article class="board-cell board-cell--wide service-health-panel">
-            <header>
-              <div>
-                <p class="eyebrow">Runtime Mix</p>
-                <h2>실행 방식별 운영 현황</h2>
-              </div>
-              <span class="board-label">9 services</span>
-            </header>
-
-            <div class="service-summary-grid" aria-label="서비스 실행 방식 요약">
-              <div>
-                <strong>Docker</strong>
-                <span>4개</span>
-                <em>ops-console · n8n · Postgres · TimescaleDB</em>
-              </div>
-              <div>
-                <strong>Host/systemd</strong>
-                <span>5개</span>
-                <em>Task Runner · Gateway · VNC</em>
-              </div>
-              <div>
-                <strong>외부 노출 포트</strong>
-                <span>7개</span>
-                <em>3100 · 3400 · 5600 · 5900 · 5910 · 18010 · 55000</em>
-              </div>
-              <div>
-                <strong>레거시 전환</strong>
-                <span>1건</span>
-                <em>dispatcher를 OpenClaw/Hermes 쪽으로 이관 예정</em>
-              </div>
-            </div>
-
-            <div class="service-status-legend" aria-label="서비스 상태 범례">
-              <span><i class="service-dot service-dot--ok"></i>정상</span>
-              <span><i class="service-dot service-dot--warn"></i>주의</span>
-              <span><i class="service-dot service-dot--error"></i>에러</span>
-              <span><i class="service-dot service-dot--unknown"></i>미확인</span>
-            </div>
-          </article>
-
-          <article class="board-cell port-policy-panel">
-            <header>
-              <div>
-                <p class="eyebrow">Port Policy</p>
-                <h2>포트 정책</h2>
-              </div>
-            </header>
-            <ul class="port-policy-list">
-              <li><strong>3100</strong><span>Ops Console 웹 UI</span></li>
-              <li><strong>3400</strong><span>dispatcher 레거시 자동화 브리지</span></li>
-              <li><strong>5600</strong><span>n8n 워크플로우</span></li>
-              <li><strong>5900 / 5910</strong><span>VNC / noVNC 원격 접속</span></li>
-              <li><strong>18000대</strong><span>Agent gateway, OpenClaw 18010</span></li>
-              <li><strong>55000대</strong><span>DB 외부 바인딩, Postgres 55000</span></li>
-            </ul>
-          </article>
-        </section>
 
         <section class="service-section" aria-label="서비스 상세 목록">
           <header>
@@ -187,8 +124,6 @@
                   <th>포트</th>
                   <th>엔드포인트</th>
                   <th>프로세스</th>
-                  <th>최근 확인</th>
-                  <th>작업</th>
                 </tr>
               </thead>
               <tbody>
@@ -202,8 +137,6 @@
                   <td data-label="포트">3100</td>
                   <td data-label="엔드포인트"><a href="http://100.81.184.13:3100/">100.81.184.13:3100</a></td>
                   <td data-label="프로세스">plozen-ops-console</td>
-                  <td data-label="최근 확인">HTTP 200</td>
-                  <td data-label="작업"><button class="table-action" type="button">열기</button></td>
                 </tr>
                 <tr>
                   <td data-label="서비스">
@@ -215,8 +148,6 @@
                   <td data-label="포트">5600</td>
                   <td data-label="엔드포인트"><a href="http://100.81.184.13:5600/">100.81.184.13:5600</a></td>
                   <td data-label="프로세스">plozen-automation-n8n</td>
-                  <td data-label="최근 확인">TCP open</td>
-                  <td data-label="작업"><button class="table-action" type="button">상세</button></td>
                 </tr>
                 <tr>
                   <td data-label="서비스">
@@ -228,8 +159,6 @@
                   <td data-label="포트">55000</td>
                   <td data-label="엔드포인트">TCP 55000</td>
                   <td data-label="프로세스">plozen-knowledge-postgres</td>
-                  <td data-label="최근 확인">healthy</td>
-                  <td data-label="작업"><button class="table-action" type="button">로그</button></td>
                 </tr>
                 <tr>
                   <td data-label="서비스">
@@ -241,8 +170,6 @@
                   <td data-label="포트">5432</td>
                   <td data-label="엔드포인트">internal only</td>
                   <td data-label="프로세스">plozen-timescaledb</td>
-                  <td data-label="최근 확인">running</td>
-                  <td data-label="작업"><button class="table-action" type="button">로그</button></td>
                 </tr>
                 <tr>
                   <td data-label="서비스">
@@ -254,8 +181,6 @@
                   <td data-label="포트">3400</td>
                   <td data-label="엔드포인트">/health</td>
                   <td data-label="프로세스">plozen-dispatcher.service</td>
-                  <td data-label="최근 확인">legacy 전환 대상</td>
-                  <td data-label="작업"><button class="table-action" type="button">전환카드</button></td>
                 </tr>
                 <tr>
                   <td data-label="서비스">
@@ -267,8 +192,6 @@
                   <td data-label="포트">18010</td>
                   <td data-label="엔드포인트">TCP 18010</td>
                   <td data-label="프로세스">openclaw gateway</td>
-                  <td data-label="최근 확인">TCP open</td>
-                  <td data-label="작업"><button class="table-action" type="button">로그</button></td>
                 </tr>
                 <tr>
                   <td data-label="서비스">
@@ -280,8 +203,6 @@
                   <td data-label="포트">-</td>
                   <td data-label="엔드포인트">no public port</td>
                   <td data-label="프로세스">hermes gateway</td>
-                  <td data-label="최근 확인">포트 미노출</td>
-                  <td data-label="작업"><button class="table-action" type="button">확인</button></td>
                 </tr>
                 <tr>
                   <td data-label="서비스">
@@ -293,8 +214,6 @@
                   <td data-label="포트">5900</td>
                   <td data-label="엔드포인트">VNC 5900</td>
                   <td data-label="프로세스">x11vnc</td>
-                  <td data-label="최근 확인">TCP open</td>
-                  <td data-label="작업"><button class="table-action" type="button">상세</button></td>
                 </tr>
                 <tr>
                   <td data-label="서비스">
@@ -306,12 +225,27 @@
                   <td data-label="포트">5910</td>
                   <td data-label="엔드포인트"><a href="http://100.81.184.13:5910/">100.81.184.13:5910</a></td>
                   <td data-label="프로세스">websockify</td>
-                  <td data-label="최근 확인">TCP open</td>
-                  <td data-label="작업"><button class="table-action" type="button">열기</button></td>
                 </tr>
               </tbody>
             </table>
           </div>
+        </section>
+
+        <section class="service-section port-policy-section" aria-label="포트 정책">
+          <header>
+            <div>
+              <p class="eyebrow">Port Policy</p>
+              <h2>포트 정책</h2>
+            </div>
+          </header>
+          <ul class="port-policy-list">
+            <li><strong>3100</strong><span>Ops Console 웹 UI</span></li>
+            <li><strong>3400</strong><span>dispatcher 레거시 자동화 브리지</span></li>
+            <li><strong>5600</strong><span>n8n 워크플로우</span></li>
+            <li><strong>5900 / 5910</strong><span>VNC / noVNC 원격 접속</span></li>
+            <li><strong>18000대</strong><span>Agent gateway, OpenClaw 18010</span></li>
+            <li><strong>55000대</strong><span>DB 외부 바인딩, Postgres 55000</span></li>
+          </ul>
         </section>
       </section>
     </main>
