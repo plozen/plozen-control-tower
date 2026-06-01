@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npx --yes http-server public -p 3100 -c-1",
+    "deploy:docker": "sh deploy/run-ops-console.sh",
     "check:public": "node tools/check-public-app.mjs",
     "design-kit:local": "npx --yes http-server design-kit -p 8095 -c-1",
     "design-kit:doctor": "node design-kit/bin/plodikit.js doctor --target design-kit --surface web --mode empty-raw"
