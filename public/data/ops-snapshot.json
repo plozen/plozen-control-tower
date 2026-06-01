@@ -37,7 +37,7 @@
     "failed": 1
   },
   "services": [
-    { "name": "Ops Console", "description": "운영 관리자 웹", "status": "ok", "runtime": "Docker", "category": "웹 UI", "port": "3100", "process": "plozen-ops-console" },
+    { "name": "Ops Console", "description": "운영 관리자 웹", "status": "ok", "runtime": "Host/systemd", "category": "웹 UI", "port": "3100", "process": "plozen-ops-console.service" },
     { "name": "n8n", "description": "워크플로우 자동화", "status": "ok", "runtime": "Docker", "category": "자동화", "port": "5600", "process": "plozen-automation-n8n" },
     { "name": "Knowledge Postgres", "description": "Vector DB 저장소", "status": "ok", "runtime": "Docker", "category": "DB", "port": "55000", "process": "plozen-knowledge-postgres" },
     { "name": "TimescaleDB", "description": "시계열 데이터 저장소", "status": "ok", "runtime": "Docker", "category": "DB", "port": "5432", "process": "plozen-timescaledb" },
