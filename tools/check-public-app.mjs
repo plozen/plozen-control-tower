@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const html = readFileSync("public/index.html", "utf8");
 const css = readFileSync("public/assets/app.css", "utf8");
@@ -116,6 +116,9 @@ assert(Array.isArray(snapshot.uploadFiles) && snapshot.uploadFiles.length === 4,
 assert(snapshot.services.every((service) => service.name && service.status && service.runtime), "invalid service row");
 assert(snapshot.services.some((service) => service.runtime === "Host/systemd"), "snapshot must include Host/systemd services");
 assert(snapshot.documents.every((document) => document.name && document.status && document.source), "invalid document row");
+assert(existsSync("public/design-kit/pages/dashboard.html"), "public design-kit dashboard page must be synced");
+assert(existsSync("public/design-kit/pages/service.html"), "public design-kit service page must be synced");
+assert(existsSync("public/design-kit/pages/knowledge.html"), "public design-kit knowledge page must be synced");
 
 const joined = [html, css, servicesCss, js, dashboardJs, knowledgeJs, servicesJs, JSON.stringify(snapshot)].join("\n");
 for (const pattern of secretPatterns) {

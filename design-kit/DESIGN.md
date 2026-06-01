@@ -181,6 +181,13 @@
 
 `pub/web/pages/dashboard.html`, `service.html`, `knowledge.html`은 PLOZEN Ops Console의 현재 live 기준 raw page다. 이 repo에서는 별도 `design-lab/`를 만들지 않고 `design-kit/pub/web/pages/`를 publishing 원본으로 관리한다.
 
+### Runtime Publishing
+
+- `design-kit/pub/web/`은 design-kit publishing 원본이다.
+- 11번 개발환경과 13번 Docker 배포환경은 시작 전에 `npm run sync:design-kit`으로 `design-kit/pub/web/`을 `public/design-kit/`에 동기화한다.
+- 런타임 URL은 `/design-kit/`을 기준으로 한다. 예: `/design-kit/pages/dashboard.html`.
+- `public/design-kit/`은 generated runtime output이므로 git에 커밋하지 않는다. Next 서버 도입 후에도 같은 `public/design-kit/` 경로로 정적 리소스를 서빙한다.
+
 ### Shell Layout
 
 - Desktop 기본 폭은 1440px이며 `.dashboard-screen`은 `276px sidebar + fluid main` 2열 grid를 쓴다.
