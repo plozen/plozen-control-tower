@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>13번 서버 서비스 상태</title>
-    <meta name="description" content="PLOZEN Ops Console 13번 서버 서비스 상태와 포트 정책 raw page" />
+    <title>13번 서버 Service 상태</title>
+    <meta name="description" content="PLOZEN Ops Console 13번 서버 Service 상태와 포트 정책 raw page" />
     <link rel="icon" href="data:," />
     <script>
       const params = new URLSearchParams(window.location.search);
@@ -27,11 +27,11 @@
         </a>
 
         <nav class="sidebar-nav" aria-label="운영 메뉴">
-          <a class="nav-link" href="./dashboard.html?viewport=desktop">대시보드</a>
-          <a class="nav-link is-active" href="./service.html?viewport=desktop">서비스</a>
+          <a class="nav-link" href="./dashboard.html?viewport=desktop">Dashboard</a>
+          <a class="nav-link is-active" href="./service.html?viewport=desktop">Service</a>
           <a class="nav-link" href="#">Automation</a>
           <a class="nav-link" href="#">Logs</a>
-          <a class="nav-link" href="./knowledge.html?viewport=desktop">Knowledge</a>
+          <a class="nav-link" href="./knowledge.html?viewport=desktop">KnowledgeDB</a>
         </nav>
       </aside>
 
@@ -39,16 +39,16 @@
         <header class="dashboard-header">
           <div>
             <p class="eyebrow">Service Registry</p>
-            <h1 id="service-title">13번 서버 서비스 상태</h1>
+            <h1 id="service-title">13번 서버 Service 상태</h1>
             <p>Docker 컨테이너와 OS/systemd 서비스를 한 화면에서 확인하고, 운영 포트 정책을 같은 흐름에서 추적합니다.</p>
           </div>
-          <div class="header-actions" aria-label="서비스 상태 액션">
+          <div class="header-actions" aria-label="Service 상태 액션">
             <span>기준 6월 1일</span>
             <button type="button">새로고침</button>
           </div>
         </header>
 
-        <dl class="metric-strip metric-strip--status metric-strip--service" aria-label="서비스 상태 지표">
+        <dl class="metric-strip metric-strip--status metric-strip--service" aria-label="Service 상태 지표">
           <div class="metric-card metric-card--ok">
             <dt>정상</dt>
             <dd>7개</dd>
@@ -67,16 +67,16 @@
           </div>
         </dl>
 
-        <section class="service-section" aria-label="서비스 상세 목록">
+        <section class="service-section" aria-label="Service 상세 목록">
           <header>
             <div>
               <p class="eyebrow">Service List</p>
-              <h2>서비스 레지스트리</h2>
+              <h2>Service 레지스트리</h2>
             </div>
             <span class="board-label">Docker + Host</span>
           </header>
 
-          <div class="service-filter-bar" aria-label="서비스 조회 조건">
+          <div class="service-filter-bar" aria-label="Service 조회 조건">
             <label class="filter-field filter-field--search">
               <span>검색어</span>
               <input type="search" value="13번 서버" aria-label="서비스명 또는 포트 검색어" />
@@ -130,7 +130,7 @@
                   <td data-label="서비스">
                     <span class="service-name"><strong>Ops Console</strong><em>운영 관리자 웹</em></span>
                   </td>
-                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i aria-hidden="true"></i>정상</span></td>
                   <td data-label="실행 방식">Docker</td>
                   <td data-label="분류">웹 UI</td>
                   <td data-label="포트">3100</td>
@@ -140,7 +140,7 @@
                   <td data-label="서비스">
                     <span class="service-name"><strong>n8n</strong><em>워크플로우 자동화</em></span>
                   </td>
-                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i aria-hidden="true"></i>정상</span></td>
                   <td data-label="실행 방식">Docker</td>
                   <td data-label="분류">자동화</td>
                   <td data-label="포트">5600</td>
@@ -150,7 +150,7 @@
                   <td data-label="서비스">
                     <span class="service-name"><strong>Knowledge Postgres</strong><em>Vector DB 저장소</em></span>
                   </td>
-                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i aria-hidden="true"></i>정상</span></td>
                   <td data-label="실행 방식">Docker</td>
                   <td data-label="분류">DB</td>
                   <td data-label="포트">55000</td>
@@ -160,7 +160,7 @@
                   <td data-label="서비스">
                     <span class="service-name"><strong>TimescaleDB</strong><em>시계열 데이터 저장소</em></span>
                   </td>
-                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i aria-hidden="true"></i>정상</span></td>
                   <td data-label="실행 방식">Docker</td>
                   <td data-label="분류">DB</td>
                   <td data-label="포트">5432</td>
@@ -170,7 +170,7 @@
                   <td data-label="서비스">
                     <span class="service-name"><strong>Task Runner</strong><em>dispatcher 자동화 브리지</em></span>
                   </td>
-                  <td data-label="상태"><span class="service-status service-status--warn"><i></i>주의</span></td>
+                  <td data-label="상태"><span class="service-status service-status--warn"><i aria-hidden="true"></i>주의</span></td>
                   <td data-label="실행 방식">Host</td>
                   <td data-label="분류">자동화</td>
                   <td data-label="포트">3400</td>
@@ -180,7 +180,7 @@
                   <td data-label="서비스">
                     <span class="service-name"><strong>OpenClaw Gateway</strong><em>Agent Discord gateway</em></span>
                   </td>
-                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i aria-hidden="true"></i>정상</span></td>
                   <td data-label="실행 방식">Host</td>
                   <td data-label="분류">Agent</td>
                   <td data-label="포트">18010</td>
@@ -190,7 +190,7 @@
                   <td data-label="서비스">
                     <span class="service-name"><strong>Hermes Gateway</strong><em>Agent background gateway</em></span>
                   </td>
-                  <td data-label="상태"><span class="service-status service-status--unknown"><i></i>미확인</span></td>
+                  <td data-label="상태"><span class="service-status service-status--unknown"><i aria-hidden="true"></i>미확인</span></td>
                   <td data-label="실행 방식">Host</td>
                   <td data-label="분류">Agent</td>
                   <td data-label="포트">-</td>
@@ -200,7 +200,7 @@
                   <td data-label="서비스">
                     <span class="service-name"><strong>x11vnc</strong><em>데스크톱 원격 접속</em></span>
                   </td>
-                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i aria-hidden="true"></i>정상</span></td>
                   <td data-label="실행 방식">Host</td>
                   <td data-label="분류">원격 접속</td>
                   <td data-label="포트">5900</td>
@@ -210,7 +210,7 @@
                   <td data-label="서비스">
                     <span class="service-name"><strong>noVNC</strong><em>브라우저 원격 접속</em></span>
                   </td>
-                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i aria-hidden="true"></i>정상</span></td>
                   <td data-label="실행 방식">Host</td>
                   <td data-label="분류">원격 접속</td>
                   <td data-label="포트">5910</td>
