@@ -28,6 +28,7 @@ const requiredNextFiles = [
   "lib/live-snapshot.js",
   "next.config.mjs",
   "Dockerfile",
+  "tools/prepare-standalone-assets.mjs",
 ];
 
 const requiredAppText = [
@@ -144,6 +145,7 @@ assert(liveSnapshotSource.includes("journalctl"), "live collector must inspect h
 assert(liveSnapshotSource.includes('checks.includes("error")'), "service status aggregation must not hide failed checks behind open ports");
 assert(snapshot.services.find((service) => service.name === "Ops Console")?.runtime === "Host/systemd", "Ops Console should be deployed as a host service for live host metrics");
 assert(existsSync("deploy/run-ops-console-host.sh"), "host systemd deploy script must exist");
+assert(packageJson.scripts.start.includes("prepare:standalone"), "start script must prepare standalone static assets");
 assert(existsSync("public/design-kit/pages/dashboard.html"), "public design-kit dashboard page must be synced");
 assert(existsSync("public/design-kit/pages/service.html"), "public design-kit service page must be synced");
 assert(existsSync("public/design-kit/pages/knowledge.html"), "public design-kit knowledge page must be synced");
