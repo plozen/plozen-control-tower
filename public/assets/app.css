@@ -230,10 +230,15 @@ a {
 }
 
 .metric-strip dd {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
   margin: 0;
   font-size: 28px;
   font-weight: 850;
   line-height: 1;
+  overflow-wrap: anywhere;
 }
 
 .metric-card--ok dd,
@@ -594,11 +599,17 @@ a {
 }
 
 .chart-legend dt {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
   color: var(--muted);
 }
 
 .chart-legend dd {
+  min-width: 0;
   color: var(--ink);
+  overflow-wrap: anywhere;
   text-align: right;
 }
 
@@ -1073,6 +1084,8 @@ td {
 
   .resource-readout strong {
     font-size: 30px;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .pie-chart {

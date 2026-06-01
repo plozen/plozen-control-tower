@@ -5,11 +5,20 @@
   "type": "module",
   "scripts": {
     "sync:design-kit": "node tools/sync-design-kit.mjs",
-    "dev": "npm run sync:design-kit && npx --yes http-server public -p 3100 -c-1",
+    "dev": "npm run sync:design-kit && next dev -H 0.0.0.0 -p 3100",
+    "build": "npm run sync:design-kit && next build",
+    "start": "npm run sync:design-kit && HOSTNAME=0.0.0.0 PORT=3100 node .next/standalone/server.js",
     "deploy:docker": "sh deploy/run-ops-console.sh",
     "check:public": "npm run sync:design-kit && node tools/check-public-app.mjs",
     "design-kit:local": "npx --yes http-server design-kit -p 8095 -c-1",
     "design-kit:doctor": "npm run sync:design-kit && node design-kit/bin/plodikit.js doctor --target design-kit --surface web --mode empty-raw --allow-public-design-kit"
   },
-  "devDependencies": {}
+  "dependencies": {
+    "next": "^16.2.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "overrides": {
+    "postcss": "^8.5.10"
+  }
 }

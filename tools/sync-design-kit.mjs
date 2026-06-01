@@ -11,7 +11,7 @@ if (!existsSync(source)) {
   throw new Error(`design-kit source missing: ${path.relative(projectRoot, source)}`);
 }
 
-await fs.rm(target, { recursive: true, force: true });
+await fs.rm(target, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
 await fs.mkdir(path.dirname(target), { recursive: true });
 await fs.cp(source, target, { recursive: true, force: true });
 

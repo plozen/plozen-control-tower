@@ -1,24 +1,44 @@
 import { existsSync, readFileSync } from "node:fs";
 
-const html = readFileSync("public/index.html", "utf8");
+const packageJson = JSON.parse(readFileSync("package.json", "utf8"));
+const layout = readFileSync("app/layout.jsx", "utf8");
+const dashboardPage = readFileSync("app/page.jsx", "utf8");
+const servicePage = readFileSync("app/services/page.jsx", "utf8");
+const appShell = readFileSync("components/AppShell.jsx", "utf8");
+const metricStrip = readFileSync("components/MetricStrip.jsx", "utf8");
+const dashboardView = readFileSync("components/dashboard/DashboardView.jsx", "utf8");
+const serviceRegistry = readFileSync("components/service/ServiceRegistry.jsx", "utf8");
+const portPolicy = readFileSync("components/service/PortPolicy.jsx", "utf8");
 const css = readFileSync("public/assets/app.css", "utf8");
 const servicesCss = readFileSync("public/assets/services.css", "utf8");
-const js = readFileSync("public/assets/app.js", "utf8");
-const dashboardJs = readFileSync("public/assets/dashboard.js", "utf8");
-const knowledgeJs = readFileSync("public/assets/knowledge.js", "utf8");
-const servicesJs = readFileSync("public/assets/services.js", "utf8");
 const snapshot = JSON.parse(readFileSync("public/data/ops-snapshot.json", "utf8"));
 
-const requiredHtml = [
+const requiredNextFiles = [
+  "app/layout.jsx",
+  "app/page.jsx",
+  "app/services/page.jsx",
+  "components/AppShell.jsx",
+  "components/MetricStrip.jsx",
+  "components/dashboard/DashboardView.jsx",
+  "components/service/ServiceRegistry.jsx",
+  "lib/snapshot.js",
+  "next.config.mjs",
+  "Dockerfile",
+];
+
+const requiredAppText = [
   "app-shell",
   "metric-strip--status",
-  "service-rows",
+  "Dashboard",
+  "Service",
+  "KnowledgeDB",
+];
+
+const requiredServiceText = [
   "service-category-filter",
   "service-search-button",
-  "knowledge-rows",
-  "upload-file-list",
   "port-policy-list",
-  "KnowledgeDB",
+  "Host/systemd",
 ];
 
 const requiredCss = [
@@ -32,32 +52,14 @@ const requiredCss = [
   "@media (max-width: 900px)",
 ];
 
-const requiredJs = [
-  "renderDashboard",
-  "loadSnapshot",
-  "renderServiceView",
-  "renderKnowledgeView",
-  "setRoute",
-];
-
-const requiredDashboardJs = [
-  "renderDashboard",
+const requiredDashboardText = [
+  "resource-readout-grid",
   "status-chart-grid",
   "pie-chart",
 ];
 
-const requiredKnowledgeJs = [
-  "filterKnowledgeDocuments",
-  "populateKnowledgeSources",
-  "renderKnowledge",
-  "renderUploadFiles",
-  "escapeHtml",
-];
-
-const requiredServicesJs = [
+const requiredServiceRegistryText = [
   "filterServices",
-  "renderServices",
-  "SERVICE_STATUS_LABELS",
   "category",
   "service-status-dot",
 ];
@@ -82,28 +84,35 @@ function assert(condition, message) {
   }
 }
 
-for (const needle of requiredHtml) {
-  assert(html.includes(needle), `public/index.html missing ${needle}`);
+for (const filePath of requiredNextFiles) {
+  assert(existsSync(filePath), `${filePath} must exist`);
+}
+
+assert(!existsSync("public/index.html"), "public/index.html must not conflict with Next root route");
+assert(packageJson.scripts.dev.includes("next dev"), "dev script must use next dev");
+assert(packageJson.scripts.build.includes("next build"), "build script must use next build");
+assert(packageJson.scripts.start.includes(".next/standalone/server.js"), "start script must use Next standalone server");
+
+const appText = [layout, dashboardPage, servicePage, appShell, metricStrip].join("\n");
+for (const needle of requiredAppText) {
+  assert(appText.includes(needle), `Next app shell missing ${needle}`);
+}
+
+const serviceText = [servicePage, serviceRegistry, portPolicy].join("\n");
+for (const needle of requiredServiceText) {
+  assert(serviceText.includes(needle), `Service app missing ${needle}`);
 }
 
 for (const needle of requiredCss) {
   assert(css.includes(needle), `public/assets/app.css missing ${needle}`);
 }
 
-for (const needle of requiredJs) {
-  assert(js.includes(needle), `public/assets/app.js missing ${needle}`);
+for (const needle of requiredDashboardText) {
+  assert(dashboardView.includes(needle), `Dashboard component missing ${needle}`);
 }
 
-for (const needle of requiredDashboardJs) {
-  assert(dashboardJs.includes(needle), `public/assets/dashboard.js missing ${needle}`);
-}
-
-for (const needle of requiredKnowledgeJs) {
-  assert(knowledgeJs.includes(needle), `public/assets/knowledge.js missing ${needle}`);
-}
-
-for (const needle of requiredServicesJs) {
-  assert(servicesJs.includes(needle), `public/assets/services.js missing ${needle}`);
+for (const needle of requiredServiceRegistryText) {
+  assert(serviceRegistry.includes(needle), `Service component missing ${needle}`);
 }
 
 for (const needle of requiredServicesCss) {
@@ -120,7 +129,19 @@ assert(existsSync("public/design-kit/pages/dashboard.html"), "public design-kit 
 assert(existsSync("public/design-kit/pages/service.html"), "public design-kit service page must be synced");
 assert(existsSync("public/design-kit/pages/knowledge.html"), "public design-kit knowledge page must be synced");
 
-const joined = [html, css, servicesCss, js, dashboardJs, knowledgeJs, servicesJs, JSON.stringify(snapshot)].join("\n");
+const joined = [
+  layout,
+  dashboardPage,
+  servicePage,
+  appShell,
+  metricStrip,
+  dashboardView,
+  serviceRegistry,
+  portPolicy,
+  css,
+  servicesCss,
+  JSON.stringify(snapshot),
+].join("\n");
 for (const pattern of secretPatterns) {
   assert(!pattern.test(joined), `secret-like pattern found: ${pattern}`);
 }
