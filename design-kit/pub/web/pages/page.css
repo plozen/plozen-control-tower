@@ -332,6 +332,15 @@ a {
   background: var(--red);
 }
 
+.metric-card--info dd,
+.metric-card--info small {
+  color: var(--blue);
+}
+
+.metric-strip--status .metric-card--info::before {
+  background: var(--blue);
+}
+
 .metric-card--unknown dd,
 .metric-card--unknown small {
   color: var(--blue);
@@ -339,10 +348,6 @@ a {
 
 .metric-strip--status .metric-card--unknown::before {
   background: var(--blue);
-}
-
-.metric-strip--service div {
-  min-height: 72px;
 }
 
 .operations-board {

@@ -177,6 +177,13 @@
 - scan-friendly metric을 가진 dashboard section
 - desktop/tablet/mobile 반응형 layout
 
+## PLOZEN 공통 상태지표
+
+- Dashboard, Service, Knowledge의 상단 상태지표는 `metric-strip metric-strip--status` 구조를 공통으로 쓴다.
+- 상태지표 카드 높이는 88px 기준으로 유지한다. 보조 설명용 `small` 문구를 넣어 카드별 높이나 밀도가 달라지게 만들지 않는다.
+- 각 카드의 숫자 또는 상태값 앞에는 작은 상태 점을 붙인다. 상태 색상은 info 파랑, 정상 초록, 주의 노랑, 에러/실패 빨강을 쓴다.
+- Knowledge 지표도 일반 숫자 카드가 아니라 `전체 문서 | 적재 | 벡터 | 실패`를 같은 상태지표 컴포넌트로 표시한다.
+
 ## PLOZEN Service 화면 용어
 
 - 서비스 상태 화면 파일명은 `pub/web/pages/service.html`로 둔다. Docker만 다루는 기존 시스템 상세 명칭은 쓰지 않는다.
