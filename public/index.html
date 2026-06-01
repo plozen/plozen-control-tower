@@ -19,11 +19,13 @@
         <a class="brand" href="#dashboard" aria-label="PLOZEN Ops Console dashboard">
           <span>P</span>
           <strong>PLOZEN Ops Console</strong>
-          <em>Read-only MVP</em>
+          <em>시스템 관리자</em>
         </a>
         <nav class="nav" aria-label="페이지 이동">
           <a class="is-active" href="#dashboard" data-route="dashboard">Dashboard</a>
           <a href="#services" data-route="services">Service</a>
+          <a href="#dashboard" aria-disabled="true">Automation</a>
+          <a href="#dashboard" aria-disabled="true">Logs</a>
           <a href="#knowledge" data-route="knowledge">KnowledgeDB</a>
         </nav>
       </aside>
@@ -109,15 +111,15 @@
         </section>
 
         <section class="route-panel" id="knowledge-panel" data-panel="knowledge">
-          <section class="data-section" aria-label="KnowledgeDB 문서 관리">
+          <section class="data-section knowledge-section" aria-label="Vector DB 문서 관리">
             <header>
               <div>
-                <p class="eyebrow">KnowledgeDB</p>
+                <p class="eyebrow">Vector DB</p>
                 <h2>문서 관리</h2>
               </div>
-              <strong>Read-only</strong>
+              <button class="section-action" type="button" id="vectorize-selected-button">선택 문서 벡터 생성</button>
             </header>
-            <div class="filter-bar" aria-label="문서 조회 조건">
+            <div class="filter-bar filter-bar--knowledge" aria-label="문서 조회 조건">
               <label>
                 <span>검색어</span>
                 <input id="knowledge-query" type="search" placeholder="문서명 검색" />
@@ -132,16 +134,30 @@
                 </select>
               </label>
               <label>
+                <span>파일 형식</span>
+                <select id="knowledge-type-filter">
+                  <option value="all">전체</option>
+                  <option value="Markdown">Markdown</option>
+                  <option value="TXT">TXT</option>
+                </select>
+              </label>
+              <label>
                 <span>저장 위치</span>
                 <select id="knowledge-source-filter">
                   <option value="all">전체</option>
                 </select>
               </label>
+              <button class="filter-submit" type="button" id="knowledge-search-button">검색</button>
             </div>
             <div class="table-wrap">
               <table class="knowledge-table">
                 <thead>
                   <tr>
+                    <th>
+                      <label class="checkbox-hitbox">
+                        <input type="checkbox" aria-label="문서 전체 선택" />
+                      </label>
+                    </th>
                     <th>문서명</th>
                     <th>파일 형식</th>
                     <th>저장 위치</th>
@@ -149,10 +165,35 @@
                     <th>글자량</th>
                     <th>상태</th>
                     <th>최근 처리</th>
+                    <th>작업</th>
                   </tr>
                 </thead>
                 <tbody id="knowledge-rows"></tbody>
               </table>
+            </div>
+            <div class="table-pagination" aria-label="문서 목록 페이지">
+              <span id="knowledge-pagination-count">1~8 / 8</span>
+              <span>페이지당 20개</span>
+              <div class="pagination-controls">
+                <button type="button" disabled>이전</button>
+                <button type="button" disabled>다음</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="data-section knowledge-section knowledge-upload-section" aria-label="문서 업로드">
+            <header>
+              <div>
+                <p class="eyebrow">Document Upload</p>
+                <h2>문서 업로드</h2>
+              </div>
+            </header>
+            <div class="upload-file-list" id="upload-file-list" aria-label="선택한 파일 목록"></div>
+            <div class="upload-footer">
+              <div class="button-row">
+                <button type="button">파일 추가</button>
+                <button type="button">전체 업로드</button>
+              </div>
             </div>
           </section>
         </section>

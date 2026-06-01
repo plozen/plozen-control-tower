@@ -103,11 +103,11 @@ function summaryValue(source, key, formatter = toCount) {
 
 function renderEmptyResourceTiles() {
   return `
-    <div class="resource-tile status-unknown" role="status">
+    <div class="resource-readout resource-readout--unknown" role="status">
       <span>Snapshot</span>
       <strong>${DASH_PLACEHOLDER}</strong>
       <em>표시할 자원 데이터가 없습니다.</em>
-      <i class="meter" style="--value: 0%"></i>
+      <i style="--value: 0%"></i>
     </div>
   `;
 }
@@ -123,18 +123,28 @@ function renderResourceTiles(resources) {
       const percent = clampPercent(item?.percent);
 
       return `
-        <div class="resource-tile ${getStatusClass(status)}">
+        <div class="resource-readout resource-readout--${escapeHtml(status)} ${getStatusClass(status)}">
           <span>${escapeHtml(valueOrDash(item?.label))}</span>
           <strong title="${escapeHtml(valueOrDash(item?.value))}">${escapeHtml(valueOrDash(item?.value))}</strong>
           <em>${escapeHtml(valueOrDash(item?.note))}</em>
-          <i class="meter" aria-label="${escapeHtml(getStatusLabel(status))} ${percent}%" style="--value: ${percent}%"></i>
+          <i aria-label="${escapeHtml(getStatusLabel(status))} ${percent}%" style="--value: ${percent}%"></i>
         </div>
       `;
     })
     .join("");
 }
 
-function renderSummaryRows(rows) {
+function numberOrZero(value) {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : 0;
+}
+
+function parsePercent(value) {
+  const numeric = Number(String(value ?? "").replace("%", ""));
+  return Number.isFinite(numeric) ? Math.min(100, Math.max(0, numeric)) : 0;
+}
+
+function renderLegendRows(rows) {
   return rows
     .map(
       (row) => `
@@ -147,78 +157,127 @@ function renderSummaryRows(rows) {
     .join("");
 }
 
-function renderSummaryPanel({ eyebrow, title, rows }) {
+function renderPiePanel({ eyebrow, title, chartClass, chartStyle, chartLabel, chartValue, chartCaption, rows }) {
   return `
-    <section class="summary-panel" aria-label="${escapeHtml(title)}">
+    <article class="chart-panel">
       <header>
         <div>
           <p class="eyebrow">${escapeHtml(eyebrow)}</p>
           <h2>${escapeHtml(title)}</h2>
         </div>
       </header>
-      <dl>${renderSummaryRows(rows)}</dl>
-    </section>
+      <div class="pie-summary">
+        <div class="pie-chart ${escapeHtml(chartClass)}" role="img" aria-label="${escapeHtml(chartLabel)}" style="${escapeHtml(chartStyle)}">
+          <strong>${escapeHtml(chartValue)}</strong>
+          <span>${escapeHtml(chartCaption)}</span>
+        </div>
+        <dl class="chart-legend">${renderLegendRows(rows)}</dl>
+      </div>
+    </article>
   `;
 }
 
-function buildSummaryPanels(snapshot) {
+function buildServiceChart(snapshot) {
   const service = snapshot?.serviceSummary;
-  const automation = snapshot?.automation;
-  const knowledge = snapshot?.knowledgeSummary;
+  const ok = numberOrZero(service?.ok);
+  const warn = numberOrZero(service?.warn);
+  const error = numberOrZero(service?.error);
+  const unknown = numberOrZero(service?.unknown);
+  const total = ok + warn + error + unknown;
+  const okEnd = total ? (ok / total) * 100 : 0;
+  const warnEnd = total ? okEnd + (warn / total) * 100 : okEnd;
+  const errorEnd = total ? warnEnd + (error / total) * 100 : warnEnd;
 
-  return [
-    {
-      eyebrow: "Service",
-      title: "서비스 상태 분포",
-      rows: [
-        { label: "정상", value: summaryValue(service, "ok") },
-        { label: "주의", value: summaryValue(service, "warn") },
-        { label: "미확인", value: summaryValue(service, "unknown") },
-        { label: "오류", value: summaryValue(service, "error") },
-      ],
-    },
-    {
-      eyebrow: "Automation",
-      title: "자동화 실행 분포",
-      rows: [
-        { label: "성공률", value: valueOrDash(automation?.successRate) },
-        { label: "성공", value: summaryValue(automation, "successCount", toRunCount) },
-        { label: "재시도", value: summaryValue(automation, "retryCount", toCaseCount) },
-        { label: "실패", value: summaryValue(automation, "failureCount", toCaseCount) },
-      ],
-    },
-    {
-      eyebrow: "KnowledgeDB",
-      title: "KnowledgeDB 문서 분포",
-      rows: [
-        { label: "전체", value: summaryValue(knowledge, "total") },
-        { label: "Vector", value: summaryValue(knowledge, "vector") },
-        { label: "적재", value: summaryValue(knowledge, "loaded") },
-        { label: "실패", value: summaryValue(knowledge, "failed") },
-      ],
-    },
-  ];
+  return {
+    eyebrow: "Service",
+    title: "서비스 상태 분포",
+    chartClass: "pie-chart--service",
+    chartStyle: `background: conic-gradient(var(--green) 0 ${okEnd}%, var(--yellow) ${okEnd}% ${warnEnd}%, var(--red) ${warnEnd}% ${errorEnd}%, var(--blue) ${errorEnd}% 100%)`,
+    chartLabel: `서비스 ${total}개 중 정상 ${ok}개, 주의 ${warn}개, 에러 ${error}개, 미확인 ${unknown}개`,
+    chartValue: `${ok}/${total || DASH_PLACEHOLDER}`,
+    chartCaption: "정상",
+    rows: [
+      { label: "정상", value: summaryValue(service, "ok") },
+      { label: "주의", value: summaryValue(service, "warn") },
+      { label: "에러", value: summaryValue(service, "error") },
+      { label: "미확인", value: summaryValue(service, "unknown") },
+      { label: "최근 갱신", value: "30초 전" },
+    ],
+  };
+}
+
+function buildAutomationChart(snapshot) {
+  const automation = snapshot?.automation;
+  const successRate = parsePercent(automation?.successRate);
+
+  return {
+    eyebrow: "Automation",
+    title: "자동화 실행 분포",
+    chartClass: "pie-chart--automation",
+    chartStyle: `background: conic-gradient(var(--green) 0 ${successRate}%, var(--yellow) ${successRate}% 100%)`,
+    chartLabel: `최근 24시간 자동화 성공률 ${valueOrDash(automation?.successRate)}, 재시도 ${numberOrZero(automation?.retryCount)}건, 실패 ${numberOrZero(automation?.failureCount)}건`,
+    chartValue: valueOrDash(automation?.successRate),
+    chartCaption: "성공률",
+    rows: [
+      { label: "성공", value: summaryValue(automation, "successCount", toRunCount) },
+      { label: "재시도", value: summaryValue(automation, "retryCount", toCaseCount) },
+      { label: "실패", value: summaryValue(automation, "failureCount", toCaseCount) },
+      { label: "스케줄 정상률", value: "91%" },
+    ],
+  };
+}
+
+function buildLogChart(snapshot) {
+  const log = snapshot?.logSummary;
+  const ok = numberOrZero(log?.ok);
+  const warn = numberOrZero(log?.warn);
+  const error = numberOrZero(log?.error);
+  const total = ok + warn + error;
+  const okEnd = total ? (ok / total) * 100 : 0;
+  const warnEnd = total ? okEnd + (warn / total) * 100 : okEnd;
+
+  return {
+    eyebrow: "Logs",
+    title: "로그 상태 분포",
+    chartClass: "pie-chart--logs",
+    chartStyle: `background: conic-gradient(var(--green) 0 ${okEnd}%, var(--yellow) ${okEnd}% ${warnEnd}%, var(--red) ${warnEnd}% 100%)`,
+    chartLabel: `최근 24시간 로그 ${total}건 중 정상 ${ok}건, 주의 ${warn}건, 오류 ${error}건`,
+    chartValue: `${error}건`,
+    chartCaption: "오류",
+    rows: [
+      { label: "정상", value: `${ok}건` },
+      { label: "주의", value: `${warn}건` },
+      { label: "오류", value: `${error}건` },
+      { label: "확인 필요", value: valueOrDash(log?.actionRequired) },
+    ],
+  };
+}
+
+function buildChartPanels(snapshot) {
+  return [buildServiceChart(snapshot), buildAutomationChart(snapshot), buildLogChart(snapshot)];
 }
 
 function renderDashboardBody(snapshot) {
   const resources = getArray(snapshot?.resources);
   const snapshotDate = valueOrDash(snapshot?.snapshotDate);
-  const summaryPanels = buildSummaryPanels(snapshot);
+  const chartPanels = buildChartPanels(snapshot);
 
   return `
-    <section class="resource-section" aria-label="서버 자원 사용률">
-      <header>
-        <div>
-          <p class="eyebrow">Server Resources</p>
-          <h2>서버 자원 사용률</h2>
-        </div>
-        <span class="snapshot-badge" title="Snapshot date">${escapeHtml(snapshotDate)}</span>
-      </header>
-      <div class="resource-grid">${renderResourceTiles(resources)}</div>
+    <section class="operations-board operations-board--dashboard" aria-label="Dashboard 상세">
+      <article class="board-cell board-cell--wide">
+        <header>
+          <div>
+            <p class="eyebrow">Server Resources</p>
+            <h2>13번 서버 자원 사용률</h2>
+          </div>
+          <span class="snapshot-badge" title="Snapshot date">${escapeHtml(snapshotDate)}</span>
+        </header>
+        <div class="resource-readout-grid">${renderResourceTiles(resources)}</div>
+      </article>
     </section>
 
-    <section class="summary-grid" aria-label="운영 상태 요약">
-      ${summaryPanels.map(renderSummaryPanel).join("")}
+    <section class="status-chart-grid" aria-label="서비스, 자동화, 로그 상태 분포">
+      ${chartPanels.map(renderPiePanel).join("")}
     </section>
   `;
 }

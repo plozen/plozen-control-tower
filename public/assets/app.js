@@ -1,5 +1,5 @@
 import { renderDashboard } from "./dashboard.js";
-import { populateKnowledgeSources, renderKnowledge } from "./knowledge.js";
+import { populateKnowledgeSources, renderKnowledge, renderUploadFiles } from "./knowledge.js";
 import { renderServices as renderServiceTable } from "./services.js";
 
 const stateLabels = {
@@ -135,6 +135,7 @@ function getKnowledgeFilters() {
   return {
     query: document.querySelector("#knowledge-query").value,
     status: document.querySelector("#knowledge-status-filter").value,
+    type: document.querySelector("#knowledge-type-filter").value,
     source: document.querySelector("#knowledge-source-filter").value,
   };
 }
@@ -143,6 +144,7 @@ function renderKnowledgeView() {
   renderKnowledge({
     documents: appState.snapshot?.documents || [],
     tbody: document.querySelector("#knowledge-rows"),
+    pagination: document.querySelector("#knowledge-pagination-count"),
     filters: getKnowledgeFilters(),
     stateLabels,
     getStatusClass,
@@ -163,6 +165,10 @@ function renderAll() {
     select: document.querySelector("#knowledge-source-filter"),
   });
   renderKnowledgeView();
+  renderUploadFiles({
+    files: appState.snapshot.uploadFiles,
+    root: document.querySelector("#upload-file-list"),
+  });
 }
 
 async function loadSnapshot() {
@@ -179,9 +185,10 @@ function bindEvents() {
   ["#service-query", "#service-status-filter", "#service-runtime-filter"].forEach((selector) => {
     document.querySelector(selector).addEventListener("input", renderServiceView);
   });
-  ["#knowledge-query", "#knowledge-status-filter", "#knowledge-source-filter"].forEach((selector) => {
+  ["#knowledge-query", "#knowledge-status-filter", "#knowledge-type-filter", "#knowledge-source-filter"].forEach((selector) => {
     document.querySelector(selector).addEventListener("input", renderKnowledgeView);
   });
+  document.querySelector("#knowledge-search-button").addEventListener("click", renderKnowledgeView);
 }
 
 bindEvents();

@@ -14,12 +14,15 @@ const requiredHtml = [
   "metric-strip",
   "service-rows",
   "knowledge-rows",
+  "upload-file-list",
   "port-policy-list",
   "KnowledgeDB",
 ];
 
 const requiredCss = [
   ".metric-strip",
+  ".status-chart-grid",
+  ".upload-file-list",
   ".service-table th:first-child",
   ".state-pill i",
   ".snapshot-badge",
@@ -36,7 +39,8 @@ const requiredJs = [
 
 const requiredDashboardJs = [
   "renderDashboard",
-  "KnowledgeDB 문서 분포",
+  "status-chart-grid",
+  "pie-chart",
   "snapshot-badge",
 ];
 
@@ -44,6 +48,7 @@ const requiredKnowledgeJs = [
   "filterKnowledgeDocuments",
   "populateKnowledgeSources",
   "renderKnowledge",
+  "renderUploadFiles",
   "escapeHtml",
 ];
 
@@ -104,6 +109,7 @@ for (const needle of requiredServicesCss) {
 
 assert(Array.isArray(snapshot.services) && snapshot.services.length === 9, "snapshot services length must be 9");
 assert(Array.isArray(snapshot.documents) && snapshot.documents.length === 8, "snapshot documents length must be 8");
+assert(Array.isArray(snapshot.uploadFiles) && snapshot.uploadFiles.length === 4, "snapshot uploadFiles length must be 4");
 assert(snapshot.services.every((service) => service.name && service.status && service.runtime), "invalid service row");
 assert(snapshot.documents.every((document) => document.name && document.status && document.source), "invalid document row");
 

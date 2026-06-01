@@ -24,6 +24,12 @@
     "retryCount": 2,
     "failureCount": 0
   },
+  "logSummary": {
+    "ok": 126,
+    "warn": 3,
+    "error": 2,
+    "actionRequired": "심각 2 · 주의 3"
+  },
   "knowledgeSummary": {
     "total": 8,
     "loaded": 1,
@@ -58,5 +64,11 @@
     { "name": "2026-05-29 포트폴리오 PDF 배포 세션", "type": "Markdown", "source": "Obsidian", "chunks": "2개", "characters": "89", "status": "vector", "processedAt": "5월 29일 13:19" },
     { "name": "구직 플랫폼 가입 및 세팅", "type": "Markdown", "source": "Todo", "chunks": "1개", "characters": "44", "status": "vector", "processedAt": "5월 29일 13:19" },
     { "name": "broken-note.md", "type": "Markdown", "source": "직접 업로드", "chunks": "-", "characters": "-", "status": "failed", "processedAt": "5분 전" }
+  ],
+  "uploadFiles": [
+    { "name": "client-delivery-spec.md", "type": "Markdown", "size": "18 KB" },
+    { "name": "rag-api-smoke-v3.txt", "type": "TXT", "size": "6 KB" },
+    { "name": "knowledge-architecture.md", "type": "Markdown", "size": "24 KB" },
+    { "name": "portfolio-session-summary.md", "type": "Markdown", "size": "11 KB" }
   ]
 }
