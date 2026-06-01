@@ -115,13 +115,13 @@ function buildAutomationPanel(snapshot) {
     chartStyle: {
       background: `conic-gradient(var(--green) 0 ${successRate}%, var(--yellow) ${successRate}% 100%)`,
     },
-    chartLabel: `최근 24시간 자동화 성공률 ${text(automation.successRate)}, 재시도 ${numberOrZero(automation.retryCount)}건, 실패 ${numberOrZero(automation.failureCount)}건`,
+    chartLabel: `자동화 서비스 정상률 ${text(automation.successRate)}, 주의 ${numberOrZero(automation.retryCount)}건, 에러 ${numberOrZero(automation.failureCount)}건`,
     chartValue: text(automation.successRate),
     chartCaption: "성공률",
     rows: [
-      { label: "성공", value: count(automation.successCount, "회") },
-      { label: "재시도", value: count(automation.retryCount, "건") },
-      { label: "실패", value: count(automation.failureCount, "건") },
+      { label: "정상", value: count(automation.successCount) },
+      { label: "주의/미확인", value: count(automation.retryCount) },
+      { label: "에러", value: count(automation.failureCount) },
       { label: "기준일", value: text(snapshot.snapshotDate) },
     ],
   };
@@ -166,7 +166,7 @@ export default function DashboardView({ snapshot }) {
           <header>
             <div>
               <p className="eyebrow">Server Resources</p>
-              <h2>13번 서버 자원 사용률</h2>
+              <h2>{snapshot.serverLabel ?? "현재 서버"} 자원 사용률</h2>
             </div>
           </header>
           <div className="resource-readout-grid">

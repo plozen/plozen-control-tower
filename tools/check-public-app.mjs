@@ -10,6 +10,8 @@ const metricStrip = readFileSync("components/MetricStrip.jsx", "utf8");
 const dashboardView = readFileSync("components/dashboard/DashboardView.jsx", "utf8");
 const serviceRegistry = readFileSync("components/service/ServiceRegistry.jsx", "utf8");
 const portPolicy = readFileSync("components/service/PortPolicy.jsx", "utf8");
+const snapshotSource = readFileSync("lib/snapshot.js", "utf8");
+const liveSnapshotSource = readFileSync("lib/live-snapshot.js", "utf8");
 const css = readFileSync("public/assets/app.css", "utf8");
 const servicesCss = readFileSync("public/assets/services.css", "utf8");
 const snapshot = normalizeOpsSnapshot(JSON.parse(readFileSync("public/data/ops-snapshot.json", "utf8")));
@@ -23,6 +25,7 @@ const requiredNextFiles = [
   "components/dashboard/DashboardView.jsx",
   "components/service/ServiceRegistry.jsx",
   "lib/snapshot.js",
+  "lib/live-snapshot.js",
   "next.config.mjs",
   "Dockerfile",
 ];
@@ -132,6 +135,11 @@ assert(snapshot.resources.find((resource) => resource.label === "Memory")?.statu
 assert(snapshot.resources.find((resource) => resource.label === "HDD Data")?.status === "ok", "41% HDD should be ok");
 assert(!dashboardView.includes("30초 전"), "dashboard must not show fake 30-second refresh data");
 assert(!dashboardView.includes("스케줄 정상률"), "dashboard must not show hard-coded automation schedule rate");
+assert(snapshotSource.includes("getLiveOpsSnapshot"), "runtime snapshot must use live collector before fallback");
+assert(liveSnapshotSource.includes("OPS_CONSOLE_COLLECTOR"), "live collector must support collector mode env");
+assert(liveSnapshotSource.includes("docker ps"), "live collector must inspect Docker containers");
+assert(liveSnapshotSource.includes("systemctl is-active"), "live collector must inspect systemd services");
+assert(liveSnapshotSource.includes("journalctl"), "live collector must inspect host logs");
 assert(existsSync("public/design-kit/pages/dashboard.html"), "public design-kit dashboard page must be synced");
 assert(existsSync("public/design-kit/pages/service.html"), "public design-kit service page must be synced");
 assert(existsSync("public/design-kit/pages/knowledge.html"), "public design-kit knowledge page must be synced");
@@ -145,6 +153,8 @@ const joined = [
   dashboardView,
   serviceRegistry,
   portPolicy,
+  snapshotSource,
+  liveSnapshotSource,
   css,
   servicesCss,
   JSON.stringify(snapshot),

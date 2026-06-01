@@ -22,7 +22,7 @@ export default async function DashboardPage() {
       <PageHeader
         kicker="Admin Overview"
         title="PLOZEN 운영 Dashboard"
-        description="13번 서버의 컴퓨팅 자원, 서비스, 자동화 상태를 시스템 관리자 관점에서 확인합니다."
+        description={`${snapshot.serverLabel ?? "현재 서버"}의 컴퓨팅 자원, 서비스, 자동화 상태를 시스템 관리자 관점에서 확인합니다.`}
         snapshotDate={snapshot.snapshotDate}
       />
       <MetricStrip items={dashboardMetrics(snapshot)} />
