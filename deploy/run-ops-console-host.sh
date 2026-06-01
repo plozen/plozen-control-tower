@@ -27,12 +27,12 @@ After=network-online.target
 [Service]
 Type=simple
 WorkingDirectory=$PROJECT_ROOT
-Environment=NODE_ENV=production
-Environment=HOSTNAME=0.0.0.0
-Environment=PORT=$PORT
-Environment=OPS_CONSOLE_COLLECTOR=$COLLECTOR
-Environment=OPS_CONSOLE_SERVER_LABEL=$SERVER_LABEL
-Environment=OPS_CONSOLE_DATA_PATHS=$DATA_PATHS
+Environment="NODE_ENV=production"
+Environment="HOSTNAME=0.0.0.0"
+Environment="PORT=$PORT"
+Environment="OPS_CONSOLE_COLLECTOR=$COLLECTOR"
+Environment="OPS_CONSOLE_SERVER_LABEL=$SERVER_LABEL"
+Environment="OPS_CONSOLE_DATA_PATHS=$DATA_PATHS"
 ExecStart=$NPM_BIN run start
 Restart=unless-stopped
 RestartSec=3
