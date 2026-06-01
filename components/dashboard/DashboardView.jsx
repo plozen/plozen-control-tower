@@ -99,7 +99,7 @@ function buildServicePanel(snapshot) {
       { label: "주의", value: count(service.warn) },
       { label: "에러", value: count(service.error) },
       { label: "미확인", value: count(service.unknown) },
-      { label: "최근 갱신", value: "30초 전" },
+      { label: "기준일", value: text(snapshot.snapshotDate) },
     ],
   };
 }
@@ -122,7 +122,7 @@ function buildAutomationPanel(snapshot) {
       { label: "성공", value: count(automation.successCount, "회") },
       { label: "재시도", value: count(automation.retryCount, "건") },
       { label: "실패", value: count(automation.failureCount, "건") },
-      { label: "스케줄 정상률", value: "91%" },
+      { label: "기준일", value: text(snapshot.snapshotDate) },
     ],
   };
 }

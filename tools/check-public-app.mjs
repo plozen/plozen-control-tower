@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
+import { normalizeOpsSnapshot } from "../lib/snapshot.js";
 
 const packageJson = JSON.parse(readFileSync("package.json", "utf8"));
 const layout = readFileSync("app/layout.jsx", "utf8");
@@ -11,7 +12,7 @@ const serviceRegistry = readFileSync("components/service/ServiceRegistry.jsx", "
 const portPolicy = readFileSync("components/service/PortPolicy.jsx", "utf8");
 const css = readFileSync("public/assets/app.css", "utf8");
 const servicesCss = readFileSync("public/assets/services.css", "utf8");
-const snapshot = JSON.parse(readFileSync("public/data/ops-snapshot.json", "utf8"));
+const snapshot = normalizeOpsSnapshot(JSON.parse(readFileSync("public/data/ops-snapshot.json", "utf8")));
 
 const requiredNextFiles = [
   "app/layout.jsx",
@@ -125,6 +126,12 @@ assert(Array.isArray(snapshot.uploadFiles) && snapshot.uploadFiles.length === 4,
 assert(snapshot.services.every((service) => service.name && service.status && service.runtime), "invalid service row");
 assert(snapshot.services.some((service) => service.runtime === "Host/systemd"), "snapshot must include Host/systemd services");
 assert(snapshot.documents.every((document) => document.name && document.status && document.source), "invalid document row");
+assert(snapshot.overview.resourceStatus.status === "warn", "resource overview should be derived as warn");
+assert(snapshot.overview.serviceStatus.status === "warn", "service overview should reflect warn/unknown service rows");
+assert(snapshot.resources.find((resource) => resource.label === "Memory")?.status === "warn", "80% memory should be warn, not error");
+assert(snapshot.resources.find((resource) => resource.label === "HDD Data")?.status === "ok", "41% HDD should be ok");
+assert(!dashboardView.includes("30초 전"), "dashboard must not show fake 30-second refresh data");
+assert(!dashboardView.includes("스케줄 정상률"), "dashboard must not show hard-coded automation schedule rate");
 assert(existsSync("public/design-kit/pages/dashboard.html"), "public design-kit dashboard page must be synced");
 assert(existsSync("public/design-kit/pages/service.html"), "public design-kit service page must be synced");
 assert(existsSync("public/design-kit/pages/knowledge.html"), "public design-kit knowledge page must be synced");

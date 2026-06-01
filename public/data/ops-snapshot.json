@@ -2,15 +2,15 @@
   "snapshotDate": "2026-06-01",
   "overview": {
     "resourceStatus": { "label": "주의", "status": "warn" },
-    "serviceStatus": { "label": "정상", "status": "ok" },
+    "serviceStatus": { "label": "주의", "status": "warn" },
     "automationStatus": { "label": "정상", "status": "ok" },
     "logStatus": { "label": "심각", "status": "error" }
   },
   "resources": [
     { "label": "CPU Load", "value": "Load 1.46", "note": "현재 사용률 18%", "percent": 18, "status": "ok" },
-    { "label": "Memory", "value": "51.2GB / 64GB", "note": "전체 메모리의 80%", "percent": 80, "status": "error" },
-    { "label": "SSD Root", "value": "297GB / 512GB", "note": "루트 디스크 58%", "percent": 58, "status": "warn" },
-    { "label": "HDD Data", "value": "1.6TB / 4TB", "note": "데이터 볼륨 41%", "percent": 41, "status": "warn" }
+    { "label": "Memory", "value": "51.2GB / 64GB", "note": "전체 메모리의 80%", "percent": 80, "status": "warn" },
+    { "label": "SSD Root", "value": "297GB / 512GB", "note": "루트 디스크 58%", "percent": 58, "status": "ok" },
+    { "label": "HDD Data", "value": "1.6TB / 4TB", "note": "데이터 볼륨 41%", "percent": 41, "status": "ok" }
   ],
   "serviceSummary": {
     "ok": 7,
