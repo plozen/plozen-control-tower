@@ -9,6 +9,7 @@ const DEFAULT_FILTERS = {
   query: "",
   status: "all",
   runtime: "all",
+  category: "all",
 };
 
 const SERVICE_COLUMN_COUNT = 6;
@@ -109,13 +110,15 @@ export function filterServices(services = [], filters = {}) {
   const query = getQueryFilter(filters);
   const status = getFilterValue(filters, "status");
   const runtime = getFilterValue(filters, "runtime");
+  const category = getFilterValue(filters, "category");
   const source = Array.isArray(services) ? services : [];
 
   return source.filter((service = {}) => {
     const matchesQuery = !query || serviceSearchText(service).includes(query);
     const matchesStatus = status === "all" || service.status === status;
     const matchesRuntime = runtime === "all" || service.runtime === runtime;
-    return matchesQuery && matchesStatus && matchesRuntime;
+    const matchesCategory = category === "all" || service.category === category;
+    return matchesQuery && matchesStatus && matchesRuntime && matchesCategory;
   });
 }
 

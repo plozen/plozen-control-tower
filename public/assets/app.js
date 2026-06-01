@@ -22,7 +22,7 @@ const routes = {
   services: {
     kicker: "Service Registry",
     title: "Service 상태",
-    description: "Docker 컨테이너와 Host 서비스를 한 목록에서 확인합니다.",
+    description: "Docker 컨테이너와 Host/systemd 서비스를 한 목록에서 확인합니다.",
   },
   knowledge: {
     kicker: "KnowledgeDB",
@@ -44,10 +44,11 @@ function getStatusClass(status) {
 }
 
 function metricClass(status) {
-  if (status === "ok" || status === "vector") return "ok";
-  if (status === "warn" || status === "loaded") return "warn";
-  if (status === "error" || status === "failed") return "critical";
-  return "info";
+  if (status === "ok" || status === "vector") return "metric-card--ok";
+  if (status === "warn" || status === "loaded") return "metric-card--warn";
+  if (status === "error" || status === "failed") return "metric-card--critical";
+  if (status === "unknown") return "metric-card--unknown";
+  return "metric-card--info";
 }
 
 function formatSnapshotTime(value) {
@@ -100,7 +101,7 @@ function renderMetrics() {
   document.querySelector("#metric-strip").innerHTML = items
     .map(
       (item) => `
-        <div class="${metricClass(item.status)}">
+        <div class="metric-card ${metricClass(item.status)}">
           <dt>${item.label}</dt>
           <dd>${item.value}</dd>
         </div>
@@ -120,6 +121,7 @@ function getServiceFilters() {
     query: document.querySelector("#service-query").value,
     status: document.querySelector("#service-status-filter").value,
     runtime: document.querySelector("#service-runtime-filter").value,
+    category: document.querySelector("#service-category-filter").value,
   };
 }
 
@@ -182,9 +184,10 @@ async function loadSnapshot() {
 function bindEvents() {
   window.addEventListener("hashchange", () => setRoute(location.hash.replace("#", "")));
   document.querySelector("#refresh-button").addEventListener("click", loadSnapshot);
-  ["#service-query", "#service-status-filter", "#service-runtime-filter"].forEach((selector) => {
+  ["#service-query", "#service-status-filter", "#service-runtime-filter", "#service-category-filter"].forEach((selector) => {
     document.querySelector(selector).addEventListener("input", renderServiceView);
   });
+  document.querySelector("#service-search-button").addEventListener("click", renderServiceView);
   ["#knowledge-query", "#knowledge-status-filter", "#knowledge-type-filter", "#knowledge-source-filter"].forEach((selector) => {
     document.querySelector(selector).addEventListener("input", renderKnowledgeView);
   });
@@ -195,10 +198,10 @@ bindEvents();
 loadSnapshot().catch((error) => {
   document.querySelector("#snapshot-time").textContent = "snapshot error";
   document.querySelector("#metric-strip").innerHTML = `
-    <div class="critical"><dt>Data</dt><dd>오류</dd></div>
-    <div class="info"><dt>Service</dt><dd>-</dd></div>
-    <div class="info"><dt>KnowledgeDB</dt><dd>-</dd></div>
-    <div class="info"><dt>Automation</dt><dd>-</dd></div>
+    <div class="metric-card metric-card--critical"><dt>Data</dt><dd>오류</dd></div>
+    <div class="metric-card metric-card--info"><dt>Service</dt><dd>-</dd></div>
+    <div class="metric-card metric-card--info"><dt>KnowledgeDB</dt><dd>-</dd></div>
+    <div class="metric-card metric-card--info"><dt>Automation</dt><dd>-</dd></div>
   `;
   console.error(error);
 });

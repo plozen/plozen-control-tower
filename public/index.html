@@ -24,8 +24,8 @@
         <nav class="nav" aria-label="페이지 이동">
           <a class="is-active" href="#dashboard" data-route="dashboard">Dashboard</a>
           <a href="#services" data-route="services">Service</a>
-          <a href="#dashboard" aria-disabled="true">Automation</a>
-          <a href="#dashboard" aria-disabled="true">Logs</a>
+          <a href="#">Automation</a>
+          <a href="#">Logs</a>
           <a href="#knowledge" data-route="knowledge">KnowledgeDB</a>
         </nav>
       </aside>
@@ -45,7 +45,7 @@
           </div>
         </header>
 
-        <dl class="metric-strip" id="metric-strip" aria-label="핵심 상태 지표"></dl>
+        <dl class="metric-strip metric-strip--status" id="metric-strip" aria-label="핵심 상태 지표"></dl>
 
         <section class="route-panel is-active" id="dashboard-panel" data-panel="dashboard"></section>
 
@@ -58,12 +58,12 @@
               </div>
               <strong>Docker + Host</strong>
             </header>
-            <div class="filter-bar" aria-label="서비스 조회 조건">
-              <label>
+            <div class="filter-bar filter-bar--service service-filter-bar" aria-label="서비스 조회 조건">
+              <label class="filter-field filter-field--search">
                 <span>검색어</span>
                 <input id="service-query" type="search" placeholder="서비스명 또는 프로세스" />
               </label>
-              <label>
+              <label class="filter-field">
                 <span>상태</span>
                 <select id="service-status-filter">
                   <option value="all">전체</option>
@@ -73,14 +73,26 @@
                   <option value="unknown">미확인</option>
                 </select>
               </label>
-              <label>
+              <label class="filter-field">
                 <span>실행 방식</span>
                 <select id="service-runtime-filter">
                   <option value="all">전체</option>
                   <option value="Docker">Docker</option>
-                  <option value="Host">Host</option>
+                  <option value="Host/systemd">Host/systemd</option>
                 </select>
               </label>
+              <label class="filter-field">
+                <span>분류</span>
+                <select id="service-category-filter">
+                  <option value="all">전체</option>
+                  <option value="웹 UI">웹 UI</option>
+                  <option value="자동화">자동화</option>
+                  <option value="Agent">Agent</option>
+                  <option value="DB">DB</option>
+                  <option value="원격 접속">원격 접속</option>
+                </select>
+              </label>
+              <button class="filter-submit" type="button" id="service-search-button">검색</button>
             </div>
             <div class="table-wrap">
               <table class="service-table">

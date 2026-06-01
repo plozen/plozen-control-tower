@@ -41,11 +41,11 @@
     { "name": "n8n", "description": "워크플로우 자동화", "status": "ok", "runtime": "Docker", "category": "자동화", "port": "5600", "process": "plozen-automation-n8n" },
     { "name": "Knowledge Postgres", "description": "Vector DB 저장소", "status": "ok", "runtime": "Docker", "category": "DB", "port": "55000", "process": "plozen-knowledge-postgres" },
     { "name": "TimescaleDB", "description": "시계열 데이터 저장소", "status": "ok", "runtime": "Docker", "category": "DB", "port": "5432", "process": "plozen-timescaledb" },
-    { "name": "Task Runner", "description": "dispatcher 자동화 브리지", "status": "warn", "runtime": "Host", "category": "자동화", "port": "3400", "process": "plozen-dispatcher.service" },
-    { "name": "OpenClaw Gateway", "description": "Agent Discord gateway", "status": "ok", "runtime": "Host", "category": "Agent", "port": "18010", "process": "openclaw gateway" },
-    { "name": "Hermes Gateway", "description": "Agent background gateway", "status": "unknown", "runtime": "Host", "category": "Agent", "port": "-", "process": "hermes gateway" },
-    { "name": "x11vnc", "description": "데스크톱 원격 접속", "status": "ok", "runtime": "Host", "category": "원격 접속", "port": "5900", "process": "x11vnc" },
-    { "name": "noVNC", "description": "브라우저 원격 접속", "status": "ok", "runtime": "Host", "category": "원격 접속", "port": "5910", "process": "websockify" }
+    { "name": "Task Runner", "description": "dispatcher 자동화 브리지", "status": "warn", "runtime": "Host/systemd", "category": "자동화", "port": "3400", "process": "plozen-dispatcher.service" },
+    { "name": "OpenClaw Gateway", "description": "Agent Discord gateway", "status": "ok", "runtime": "Host/systemd", "category": "Agent", "port": "18010", "process": "openclaw gateway" },
+    { "name": "Hermes Gateway", "description": "Agent background gateway", "status": "unknown", "runtime": "Host/systemd", "category": "Agent", "port": "-", "process": "hermes gateway" },
+    { "name": "x11vnc", "description": "데스크톱 원격 접속", "status": "ok", "runtime": "Host/systemd", "category": "원격 접속", "port": "5900", "process": "x11vnc" },
+    { "name": "noVNC", "description": "브라우저 원격 접속", "status": "ok", "runtime": "Host/systemd", "category": "원격 접속", "port": "5910", "process": "websockify" }
   ],
   "portPolicy": [
     { "range": "3100", "description": "Ops Console 웹 UI" },

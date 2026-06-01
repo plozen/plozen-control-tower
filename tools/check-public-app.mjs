@@ -11,8 +11,10 @@ const snapshot = JSON.parse(readFileSync("public/data/ops-snapshot.json", "utf8"
 
 const requiredHtml = [
   "app-shell",
-  "metric-strip",
+  "metric-strip--status",
   "service-rows",
+  "service-category-filter",
+  "service-search-button",
   "knowledge-rows",
   "upload-file-list",
   "port-policy-list",
@@ -21,6 +23,8 @@ const requiredHtml = [
 
 const requiredCss = [
   ".metric-strip",
+  ".metric-card--ok",
+  ".filter-bar--service",
   ".status-chart-grid",
   ".upload-file-list",
   ".service-table th:first-child",
@@ -54,6 +58,7 @@ const requiredServicesJs = [
   "filterServices",
   "renderServices",
   "SERVICE_STATUS_LABELS",
+  "category",
   "service-status-dot",
 ];
 
@@ -109,6 +114,7 @@ assert(Array.isArray(snapshot.services) && snapshot.services.length === 9, "snap
 assert(Array.isArray(snapshot.documents) && snapshot.documents.length === 8, "snapshot documents length must be 8");
 assert(Array.isArray(snapshot.uploadFiles) && snapshot.uploadFiles.length === 4, "snapshot uploadFiles length must be 4");
 assert(snapshot.services.every((service) => service.name && service.status && service.runtime), "invalid service row");
+assert(snapshot.services.some((service) => service.runtime === "Host/systemd"), "snapshot must include Host/systemd services");
 assert(snapshot.documents.every((document) => document.name && document.status && document.source), "invalid document row");
 
 const joined = [html, css, servicesCss, js, dashboardJs, knowledgeJs, servicesJs, JSON.stringify(snapshot)].join("\n");
