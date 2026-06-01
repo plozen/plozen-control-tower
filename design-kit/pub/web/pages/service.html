@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13번 서버 서비스 상태</title>
+    <meta name="description" content="PLOZEN Ops Console 13번 서버 서비스 상태와 포트 정책 raw page" />
+    <link rel="icon" href="data:," />
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      document.documentElement.dataset.viewport = params.get("viewport") || "desktop";
+      if (params.get("embed")) {
+        document.documentElement.dataset.embed = "1";
+      }
+    </script>
+    <link rel="stylesheet" href="./page.css" />
+  </head>
+  <body>
+    <main class="web-page dashboard-screen" aria-labelledby="service-title">
+      <aside class="dashboard-sidebar" aria-label="관리자 메뉴">
+        <a class="brand-lockup" href="#" aria-label="PLOZEN Ops Console 관리자 홈">
+          <span class="brand-mark">P</span>
+          <span class="brand-copy">
+            <strong>PLOZEN Ops Console</strong>
+            <em>시스템 관리자</em>
+          </span>
+        </a>
+
+        <nav class="sidebar-nav" aria-label="운영 메뉴">
+          <a class="nav-link" href="./dashboard.html?viewport=desktop">대시보드</a>
+          <a class="nav-link is-active" href="./service.html?viewport=desktop">서비스</a>
+          <a class="nav-link" href="#">Automation</a>
+          <a class="nav-link" href="#">Logs</a>
+          <a class="nav-link" href="./knowledge.html?viewport=desktop">Knowledge</a>
+        </nav>
+      </aside>
+
+      <section class="dashboard-main">
+        <header class="dashboard-header">
+          <div>
+            <p class="eyebrow">Service Registry</p>
+            <h1 id="service-title">13번 서버 서비스 상태</h1>
+            <p>Docker 컨테이너와 OS/systemd 서비스를 한 화면에서 확인하고, 운영 포트 정책을 같은 흐름에서 추적합니다.</p>
+          </div>
+          <div class="header-actions" aria-label="서비스 상태 액션">
+            <span>기준 6월 1일</span>
+            <button type="button">새로고침</button>
+          </div>
+        </header>
+
+        <dl class="metric-strip metric-strip--status" aria-label="서비스 상태 지표">
+          <div class="metric-card metric-card--ok">
+            <dt>정상</dt>
+            <dd><span class="status-dot"></span>7개</dd>
+            <small>외부 접속 또는 health 확인</small>
+          </div>
+          <div class="metric-card metric-card--warn">
+            <dt>주의</dt>
+            <dd><span class="status-dot"></span>1개</dd>
+            <small>dispatcher 전환 예정</small>
+          </div>
+          <div class="metric-card metric-card--critical">
+            <dt>에러</dt>
+            <dd><span class="status-dot"></span>0개</dd>
+            <small>즉시 조치 대상 없음</small>
+          </div>
+          <div class="metric-card metric-card--unknown">
+            <dt>미확인</dt>
+            <dd><span class="status-dot"></span>1개</dd>
+            <small>포트 미노출 서비스</small>
+          </div>
+        </dl>
+
+        <section class="operations-board operations-board--service" aria-label="서비스 운영 요약">
+          <article class="board-cell board-cell--wide service-health-panel">
+            <header>
+              <div>
+                <p class="eyebrow">Runtime Mix</p>
+                <h2>실행 방식별 운영 현황</h2>
+              </div>
+              <span class="board-label">9 services</span>
+            </header>
+
+            <div class="service-summary-grid" aria-label="서비스 실행 방식 요약">
+              <div>
+                <strong>Docker</strong>
+                <span>4개</span>
+                <em>ops-console · n8n · Postgres · TimescaleDB</em>
+              </div>
+              <div>
+                <strong>Host/systemd</strong>
+                <span>5개</span>
+                <em>Task Runner · Gateway · VNC</em>
+              </div>
+              <div>
+                <strong>외부 노출 포트</strong>
+                <span>7개</span>
+                <em>3100 · 3400 · 5600 · 5900 · 5910 · 18010 · 55000</em>
+              </div>
+              <div>
+                <strong>레거시 전환</strong>
+                <span>1건</span>
+                <em>dispatcher를 OpenClaw/Hermes 쪽으로 이관 예정</em>
+              </div>
+            </div>
+
+            <div class="service-status-legend" aria-label="서비스 상태 범례">
+              <span><i class="service-dot service-dot--ok"></i>정상</span>
+              <span><i class="service-dot service-dot--warn"></i>주의</span>
+              <span><i class="service-dot service-dot--error"></i>에러</span>
+              <span><i class="service-dot service-dot--unknown"></i>미확인</span>
+            </div>
+          </article>
+
+          <article class="board-cell port-policy-panel">
+            <header>
+              <div>
+                <p class="eyebrow">Port Policy</p>
+                <h2>포트 정책</h2>
+              </div>
+            </header>
+            <ul class="port-policy-list">
+              <li><strong>3100</strong><span>Ops Console 웹 UI</span></li>
+              <li><strong>3400</strong><span>dispatcher 레거시 자동화 브리지</span></li>
+              <li><strong>5600</strong><span>n8n 워크플로우</span></li>
+              <li><strong>5900 / 5910</strong><span>VNC / noVNC 원격 접속</span></li>
+              <li><strong>18000대</strong><span>Agent gateway, OpenClaw 18010</span></li>
+              <li><strong>55000대</strong><span>DB 외부 바인딩, Postgres 55000</span></li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="service-section" aria-label="서비스 상세 목록">
+          <header>
+            <div>
+              <p class="eyebrow">Service List</p>
+              <h2>서비스 레지스트리</h2>
+            </div>
+            <span class="board-label">Docker + Host</span>
+          </header>
+
+          <div class="service-filter-bar" aria-label="서비스 조회 조건">
+            <label class="filter-field filter-field--search">
+              <span>검색어</span>
+              <input type="search" value="13번 서버" aria-label="서비스명 또는 포트 검색어" />
+            </label>
+            <label class="filter-field">
+              <span>상태</span>
+              <select aria-label="상태 필터">
+                <option>전체</option>
+                <option>정상</option>
+                <option>주의</option>
+                <option>에러</option>
+                <option>미확인</option>
+              </select>
+            </label>
+            <label class="filter-field">
+              <span>실행 방식</span>
+              <select aria-label="실행 방식 필터">
+                <option>전체</option>
+                <option>Docker</option>
+                <option>Host/systemd</option>
+              </select>
+            </label>
+            <label class="filter-field">
+              <span>분류</span>
+              <select aria-label="서비스 분류 필터">
+                <option>전체</option>
+                <option>웹 UI</option>
+                <option>자동화</option>
+                <option>Agent</option>
+                <option>DB</option>
+                <option>원격 접속</option>
+              </select>
+            </label>
+            <button class="filter-submit" type="button">검색</button>
+          </div>
+
+          <div class="service-table-wrap">
+            <table class="service-table">
+              <thead>
+                <tr>
+                  <th>서비스</th>
+                  <th>상태</th>
+                  <th>실행 방식</th>
+                  <th>분류</th>
+                  <th>포트</th>
+                  <th>엔드포인트</th>
+                  <th>프로세스</th>
+                  <th>최근 확인</th>
+                  <th>작업</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="서비스">
+                    <span class="service-name"><strong>Ops Console</strong><em>운영 관리자 웹</em></span>
+                  </td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="실행 방식">Docker</td>
+                  <td data-label="분류">웹 UI</td>
+                  <td data-label="포트">3100</td>
+                  <td data-label="엔드포인트"><a href="http://100.81.184.13:3100/">100.81.184.13:3100</a></td>
+                  <td data-label="프로세스">plozen-ops-console</td>
+                  <td data-label="최근 확인">HTTP 200</td>
+                  <td data-label="작업"><button class="table-action" type="button">열기</button></td>
+                </tr>
+                <tr>
+                  <td data-label="서비스">
+                    <span class="service-name"><strong>n8n</strong><em>워크플로우 자동화</em></span>
+                  </td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="실행 방식">Docker</td>
+                  <td data-label="분류">자동화</td>
+                  <td data-label="포트">5600</td>
+                  <td data-label="엔드포인트"><a href="http://100.81.184.13:5600/">100.81.184.13:5600</a></td>
+                  <td data-label="프로세스">plozen-automation-n8n</td>
+                  <td data-label="최근 확인">TCP open</td>
+                  <td data-label="작업"><button class="table-action" type="button">상세</button></td>
+                </tr>
+                <tr>
+                  <td data-label="서비스">
+                    <span class="service-name"><strong>Knowledge Postgres</strong><em>Vector DB 저장소</em></span>
+                  </td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="실행 방식">Docker</td>
+                  <td data-label="분류">DB</td>
+                  <td data-label="포트">55000</td>
+                  <td data-label="엔드포인트">TCP 55000</td>
+                  <td data-label="프로세스">plozen-knowledge-postgres</td>
+                  <td data-label="최근 확인">healthy</td>
+                  <td data-label="작업"><button class="table-action" type="button">로그</button></td>
+                </tr>
+                <tr>
+                  <td data-label="서비스">
+                    <span class="service-name"><strong>TimescaleDB</strong><em>시계열 데이터 저장소</em></span>
+                  </td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="실행 방식">Docker</td>
+                  <td data-label="분류">DB</td>
+                  <td data-label="포트">5432</td>
+                  <td data-label="엔드포인트">internal only</td>
+                  <td data-label="프로세스">plozen-timescaledb</td>
+                  <td data-label="최근 확인">running</td>
+                  <td data-label="작업"><button class="table-action" type="button">로그</button></td>
+                </tr>
+                <tr>
+                  <td data-label="서비스">
+                    <span class="service-name"><strong>Task Runner</strong><em>dispatcher 자동화 브리지</em></span>
+                  </td>
+                  <td data-label="상태"><span class="service-status service-status--warn"><i></i>주의</span></td>
+                  <td data-label="실행 방식">Host</td>
+                  <td data-label="분류">자동화</td>
+                  <td data-label="포트">3400</td>
+                  <td data-label="엔드포인트">/health</td>
+                  <td data-label="프로세스">plozen-dispatcher.service</td>
+                  <td data-label="최근 확인">legacy 전환 대상</td>
+                  <td data-label="작업"><button class="table-action" type="button">전환카드</button></td>
+                </tr>
+                <tr>
+                  <td data-label="서비스">
+                    <span class="service-name"><strong>OpenClaw Gateway</strong><em>Agent Discord gateway</em></span>
+                  </td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="실행 방식">Host</td>
+                  <td data-label="분류">Agent</td>
+                  <td data-label="포트">18010</td>
+                  <td data-label="엔드포인트">TCP 18010</td>
+                  <td data-label="프로세스">openclaw gateway</td>
+                  <td data-label="최근 확인">TCP open</td>
+                  <td data-label="작업"><button class="table-action" type="button">로그</button></td>
+                </tr>
+                <tr>
+                  <td data-label="서비스">
+                    <span class="service-name"><strong>Hermes Gateway</strong><em>Agent background gateway</em></span>
+                  </td>
+                  <td data-label="상태"><span class="service-status service-status--unknown"><i></i>미확인</span></td>
+                  <td data-label="실행 방식">Host</td>
+                  <td data-label="분류">Agent</td>
+                  <td data-label="포트">-</td>
+                  <td data-label="엔드포인트">no public port</td>
+                  <td data-label="프로세스">hermes gateway</td>
+                  <td data-label="최근 확인">포트 미노출</td>
+                  <td data-label="작업"><button class="table-action" type="button">확인</button></td>
+                </tr>
+                <tr>
+                  <td data-label="서비스">
+                    <span class="service-name"><strong>x11vnc</strong><em>데스크톱 원격 접속</em></span>
+                  </td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="실행 방식">Host</td>
+                  <td data-label="분류">원격 접속</td>
+                  <td data-label="포트">5900</td>
+                  <td data-label="엔드포인트">VNC 5900</td>
+                  <td data-label="프로세스">x11vnc</td>
+                  <td data-label="최근 확인">TCP open</td>
+                  <td data-label="작업"><button class="table-action" type="button">상세</button></td>
+                </tr>
+                <tr>
+                  <td data-label="서비스">
+                    <span class="service-name"><strong>noVNC</strong><em>브라우저 원격 접속</em></span>
+                  </td>
+                  <td data-label="상태"><span class="service-status service-status--ok"><i></i>정상</span></td>
+                  <td data-label="실행 방식">Host</td>
+                  <td data-label="분류">원격 접속</td>
+                  <td data-label="포트">5910</td>
+                  <td data-label="엔드포인트"><a href="http://100.81.184.13:5910/">100.81.184.13:5910</a></td>
+                  <td data-label="프로세스">websockify</td>
+                  <td data-label="최근 확인">TCP open</td>
+                  <td data-label="작업"><button class="table-action" type="button">열기</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

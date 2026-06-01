@@ -8,6 +8,8 @@ This repository replaces the idea of opening the legacy `plozen-console` codebas
 
 First public MVP:
 
+- Service status for Docker and host/systemd processes
+- Port policy snapshot for the 13 server
 - Knowledge API health
 - Document source list
 - Chunk count and status

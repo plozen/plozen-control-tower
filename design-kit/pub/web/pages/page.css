@@ -332,6 +332,15 @@ a {
   background: var(--red);
 }
 
+.metric-card--unknown dd,
+.metric-card--unknown small {
+  color: var(--blue);
+}
+
+.metric-strip--status .metric-card--unknown::before {
+  background: var(--blue);
+}
+
 .operations-board {
   display: grid;
   grid-template-columns: minmax(0, 1.34fr) minmax(300px, 0.66fr);
@@ -346,6 +355,10 @@ a {
 
 .operations-board--system {
   grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+}
+
+.operations-board--service {
+  grid-template-columns: minmax(0, 1.18fr) minmax(330px, 0.82fr);
 }
 
 .board-cell {
@@ -363,7 +376,8 @@ a {
 .board-cell header,
 .queue-block header,
 .activity-block header,
-.system-table-section header {
+.system-table-section header,
+.service-section header {
   display: flex;
   gap: 14px;
   align-items: flex-start;
@@ -374,7 +388,8 @@ a {
 .board-cell h2,
 .queue-block h2,
 .activity-block h2,
-.system-table-section h2 {
+.system-table-section h2,
+.service-section h2 {
   margin: 5px 0 0;
   font-size: 20px;
   font-weight: 850;
@@ -624,8 +639,8 @@ a {
   line-height: 1;
 }
 
-.pie-chart--docker {
-  background: var(--green);
+.pie-chart--service {
+  background: conic-gradient(var(--green) 0 77.8%, var(--yellow) 77.8% 88.9%, var(--blue) 88.9% 100%);
 }
 
 .pie-chart--automation {
@@ -722,6 +737,268 @@ a {
   font-weight: 850;
   line-height: 1.25;
   text-align: right;
+}
+
+.service-health-panel {
+  min-height: 284px;
+}
+
+.service-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.service-summary-grid div {
+  display: grid;
+  min-width: 0;
+  min-height: 86px;
+  gap: 7px;
+  align-content: start;
+  padding: 14px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.service-summary-grid strong,
+.service-summary-grid span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.service-summary-grid strong {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.service-summary-grid span {
+  color: var(--ink);
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.service-summary-grid em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.service-status-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.service-status-legend span {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.service-dot,
+.service-status i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.service-dot--ok,
+.service-status--ok {
+  color: var(--green-deep);
+}
+
+.service-dot--warn,
+.service-status--warn {
+  color: var(--yellow-deep);
+}
+
+.service-dot--error,
+.service-status--error {
+  color: var(--red-deep);
+}
+
+.service-dot--unknown,
+.service-status--unknown {
+  color: var(--blue);
+}
+
+.port-policy-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.port-policy-list li {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  min-height: 41px;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.port-policy-list strong {
+  color: var(--green-deep);
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.port-policy-list span {
+  min-width: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.service-section {
+  min-width: 0;
+  margin-top: 18px;
+  padding: 17px 18px;
+  border-top: 1px solid var(--line-strong);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.service-filter-bar {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) repeat(3, minmax(132px, 0.46fr)) 96px;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.44);
+}
+
+.service-table-wrap {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.service-table {
+  table-layout: fixed;
+  font-size: 13px;
+}
+
+.service-table th,
+.service-table td {
+  height: 42px;
+  padding: 0 8px;
+  vertical-align: middle;
+}
+
+.service-table th:nth-child(1) {
+  width: 16%;
+}
+
+.service-table th:nth-child(2) {
+  width: 86px;
+}
+
+.service-table th:nth-child(3) {
+  width: 104px;
+}
+
+.service-table th:nth-child(4) {
+  width: 78px;
+}
+
+.service-table th:nth-child(5) {
+  width: 66px;
+}
+
+.service-table th:nth-child(7) {
+  width: 142px;
+}
+
+.service-table th:nth-child(8) {
+  width: 116px;
+}
+
+.service-table th:nth-child(9) {
+  width: 86px;
+}
+
+.service-table td {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.service-table a {
+  color: var(--green-deep);
+  font-weight: 850;
+}
+
+.service-name {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.service-name strong,
+.service-name em {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.service-name strong {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.service-name em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.service-status {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  gap: 7px;
+  justify-self: start;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: rgba(23, 32, 25, 0.06);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .knowledge-section,
@@ -1190,7 +1467,8 @@ td {
 
   .operations-board,
   .operations-board--dashboard,
-  .operations-board--system {
+  .operations-board--system,
+  .operations-board--service {
     grid-template-columns: 1fr;
   }
 
@@ -1198,6 +1476,8 @@ td {
   .status-chart-grid,
   .knowledge-grid,
   .knowledge-filter-bar,
+  .service-filter-bar,
+  .service-summary-grid,
   .upload-footer,
   .pie-summary {
     grid-template-columns: 1fr;
@@ -1294,6 +1574,91 @@ td {
     border-left: 0;
     border-right: 0;
     background: transparent;
+  }
+
+  .service-section {
+    padding: 15px 14px;
+  }
+
+  .service-filter-bar {
+    padding: 10px 0;
+    border-left: 0;
+    border-right: 0;
+    background: transparent;
+  }
+
+  .service-summary-grid div {
+    min-height: 76px;
+  }
+
+  .port-policy-list li {
+    grid-template-columns: 78px minmax(0, 1fr);
+  }
+
+  .service-table {
+    display: block;
+    border-top: 0;
+  }
+
+  .service-table thead {
+    display: none;
+  }
+
+  .service-table tbody,
+  .service-table tr,
+  .service-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .service-table tr {
+    display: grid;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .service-table td {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    min-height: 34px;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    border-bottom: 0;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .service-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 850;
+    line-height: 1.2;
+  }
+
+  .service-table td:first-child {
+    grid-template-columns: 1fr;
+    min-height: 46px;
+    padding-top: 2px;
+  }
+
+  .service-table td:first-child::before {
+    display: none;
+  }
+
+  .service-table .table-action {
+    width: auto;
+    min-width: 88px;
+    justify-self: start;
+  }
+
+  .service-table a,
+  .service-name strong,
+  .service-name em {
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .filter-field input,

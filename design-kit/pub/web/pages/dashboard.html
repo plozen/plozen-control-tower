@@ -28,7 +28,7 @@
 
         <nav class="sidebar-nav" aria-label="운영 메뉴">
           <a class="nav-link is-active" href="./dashboard.html?viewport=desktop">대시보드</a>
-          <a class="nav-link" href="./system.html?viewport=desktop">Docker</a>
+          <a class="nav-link" href="./service.html?viewport=desktop">서비스</a>
           <a class="nav-link" href="#">Automation</a>
           <a class="nav-link" href="#">Logs</a>
           <a class="nav-link" href="./knowledge.html?viewport=desktop">Knowledge</a>
@@ -40,7 +40,7 @@
           <div>
             <p class="eyebrow">Admin Overview</p>
             <h1 id="dashboard-title">PLOZEN 운영 대시보드</h1>
-            <p>13번 서버의 컴퓨팅 자원, Docker, 자동화 상태를 시스템 관리자 관점에서 확인합니다.</p>
+            <p>13번 서버의 컴퓨팅 자원, 서비스, 자동화 상태를 시스템 관리자 관점에서 확인합니다.</p>
           </div>
           <div class="header-actions" aria-label="대시보드 액션">
             <span>동기화 2분 전</span>
@@ -55,9 +55,9 @@
             <small>Memory 80%</small>
           </div>
           <div class="metric-card metric-card--ok">
-            <dt>Docker</dt>
+            <dt>Service</dt>
             <dd><span class="status-dot"></span>정상</dd>
-            <small>Running 12/12</small>
+            <small>정상 7/9</small>
           </div>
           <div class="metric-card metric-card--ok">
             <dt>Automation</dt>
@@ -108,23 +108,24 @@
           </article>
         </section>
 
-        <section class="status-chart-grid" aria-label="Docker, 자동화, 로그 상태 분포">
+        <section class="status-chart-grid" aria-label="서비스, 자동화, 로그 상태 분포">
           <article class="chart-panel">
             <header>
               <div>
-                <p class="eyebrow">Docker</p>
-                <h2>컨테이너 상태 분포</h2>
+                <p class="eyebrow">Service</p>
+                <h2>서비스 상태 분포</h2>
               </div>
             </header>
             <div class="pie-summary">
-              <div class="pie-chart pie-chart--docker" role="img" aria-label="Docker 컨테이너 12개 모두 실행 중">
-                <strong>100%</strong>
-                <span>Running</span>
+              <div class="pie-chart pie-chart--service" role="img" aria-label="서비스 9개 중 정상 7개, 주의 1개, 에러 0개, 미확인 1개">
+                <strong>7/9</strong>
+                <span>정상</span>
               </div>
               <dl class="chart-legend">
-                <div><dt><i class="legend-dot legend-dot--green"></i>Running</dt><dd>12개</dd></div>
-                <div><dt><i class="legend-dot legend-dot--amber"></i>Stopped</dt><dd>0개</dd></div>
-                <div><dt><i class="legend-dot legend-dot--red"></i>Unhealthy</dt><dd>0개</dd></div>
+                <div><dt><i class="legend-dot legend-dot--green"></i>정상</dt><dd>7개</dd></div>
+                <div><dt><i class="legend-dot legend-dot--amber"></i>주의</dt><dd>1개</dd></div>
+                <div><dt><i class="legend-dot legend-dot--red"></i>에러</dt><dd>0개</dd></div>
+                <div><dt><i class="legend-dot legend-dot--blue"></i>미확인</dt><dd>1개</dd></div>
                 <div><dt>최근 갱신</dt><dd>30초 전</dd></div>
               </dl>
             </div>
