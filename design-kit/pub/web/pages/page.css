@@ -296,15 +296,6 @@ a {
   background: var(--muted);
 }
 
-.status-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: currentColor;
-}
-
 .metric-card--ok dd,
 .metric-card--ok small {
   color: var(--green-deep);
